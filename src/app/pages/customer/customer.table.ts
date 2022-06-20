@@ -5,13 +5,13 @@ import { environment } from 'src/environments/environment';
 const baseApiUrl = environment.baseApiUrl;
 const dataSourceUrl = `${baseApiUrl}customers`;
 const actions: Array<Action> = [
-  //{ name: 'Expand', type: 'expand', path: 'users' },
+  { name: 'Expand', type: 'expand', path: 'customers' },
   { name: 'Edit', type: 'edit' },
-  { name: 'Delete', type: 'delete'},
+//{ name: 'Delete', type: 'delete'},
 ];
 
 const customerTableState: TableState = {
-  id: 'user table',
+  id: 'customer table',
   title: 'List of Organizations customer ',
   pageNumber: 0,
   pageSize: 5,

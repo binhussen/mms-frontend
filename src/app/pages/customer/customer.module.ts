@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { PageComponent } from '../page/page.component';
 import customerPage from './customer.page';
 import { PageModule } from '../page/page.module';
+import warrantierDetailPage from './customer-detail.page';
 
 
 
@@ -15,7 +16,8 @@ import { PageModule } from '../page/page.module';
     MmsCommonModule,
     PageModule,
     RouterModule.forChild([
-      { path:'',component:PageComponent, data: customerPage}
+      { path:'',component:PageComponent, data: customerPage},
+      { path: 'id', component: PageComponent, data: warrantierDetailPage}
     ])
     
   ]
