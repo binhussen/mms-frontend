@@ -63,7 +63,7 @@ export class FormDialogComponent implements OnInit {
           if (f.status == 'FAILED') {
             // setTimeout(() => {
             // }, 100);
-            this.dialogRef.close();
+            //this.dialogRef.close();
             this.sanckbar.open('Create Failed', 'close', {
               horizontalPosition: 'end',
               verticalPosition: 'top',
@@ -99,7 +99,7 @@ export class FormDialogComponent implements OnInit {
           if (f.status == 'FAILED') {
             // setTimeout(() => {
             // }, 100);
-            this.dialogRef.close();
+            //this.dialogRef.close();
             this.sanckbar.open('Update Failed', 'close', {
               horizontalPosition: 'end',
               verticalPosition: 'top',
@@ -133,7 +133,7 @@ export class FormDialogComponent implements OnInit {
           if (f.status == 'FAILED') {
             // setTimeout(() => {
             // }, 100);
-            this.dialogRef.close();
+            //this.dialogRef.close();
             this.sanckbar.open('Approve Failed', 'close', {
               horizontalPosition: 'end',
               verticalPosition: 'top',
@@ -167,7 +167,7 @@ export class FormDialogComponent implements OnInit {
           if (f.status == 'FAILED') {
             // setTimeout(() => {
             // }, 100);
-            this.dialogRef.close();
+            //this.dialogRef.close();
             this.sanckbar.open('Rejecte Failed', 'close', {
               horizontalPosition: 'end',
               verticalPosition: 'top',
