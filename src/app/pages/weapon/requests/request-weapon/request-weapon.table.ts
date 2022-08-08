@@ -17,7 +17,7 @@ const actions: Array<Action> = [
   {
     name: 'createNew.distribute',
     type: 'distribute',
-    // path:'approves'
+    submittedUrl: `${baseApiUrl}requestapprove/[id]/`,
   },
 ];
 

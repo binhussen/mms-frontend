@@ -30,15 +30,17 @@ export class FormEffect {
     this.actions$.pipe(
       ofType(formActions.submitUpdatingForm.type),
       switchMap((action: { value: Omit<FormState, 'response'> }) =>
-        this.crudHttpService.updateResource(action.value.data,action.value.submittedToUrl??'').pipe(
-          mergeMap((response) => [
-            formActions.formSubmittingSuccess({ value: response }),
-            tableActions.updateTableColumn({value:action.value.data})
-          ]),
-          catchError((error) =>
-            of(formActions.formSubmittingFailure({ value: error }))
+        this.crudHttpService
+          .updateResource(action.value.data, action.value.submittedToUrl ?? '')
+          .pipe(
+            mergeMap((response) => [
+              formActions.formSubmittingSuccess({ value: response }),
+              tableActions.updateTableColumn({ value: action.value.data }),
+            ]),
+            catchError((error) =>
+              of(formActions.formSubmittingFailure({ value: error }))
+            )
           )
-        )
       )
     )
   );
@@ -61,9 +63,9 @@ export class FormEffect {
       ofType(formActions.setApprovingForm.type),
       switchMap((action: { value: FormData }) =>
         this.crudHttpService.approveResource(action.value).pipe(
-          mergeMap((response) =>[
+          mergeMap((response) => [
             formActions.formSubmittingSuccess({ value: response }),
-            tableActions.updateTableColumn({value:action.value.data})
+            tableActions.updateTableColumn({ value: action.value.data }),
           ]),
           catchError((err) => of(formActions.formSubmittingFailure(err)))
         )
@@ -76,9 +78,9 @@ export class FormEffect {
       ofType(formActions.setRejectingForm.type),
       switchMap((action: { value: FormData }) =>
         this.crudHttpService.rejectResource(action.value).pipe(
-          mergeMap((response) =>[
+          mergeMap((response) => [
             formActions.formSubmittingSuccess({ value: response }),
-            tableActions.updateTableColumn({value:action.value.data})
+            tableActions.updateTableColumn({ value: action.value.data }),
           ]),
           catchError((err) => of(formActions.formSubmittingFailure(err)))
         )

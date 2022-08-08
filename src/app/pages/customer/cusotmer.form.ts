@@ -23,6 +23,13 @@ const customerForm: Form = {
       ],
     },
     {
+      name: 'photo',
+      type: 'file',
+      placeholder: 'Profile Picture',
+      defaultValue: '',
+      validations: [{ type: 'required', value: true }],
+    },
+    {
       name: 'region',
       type: 'text',
       placeholder: 'customer.form.region',
@@ -75,7 +82,7 @@ const customerForm: Form = {
       size: 3,
       validations: [
         { type: 'required', value: true },
-        { type: 'phone', value: '[09][0-9]{8}' },
+        { type: 'phone', value: true },
       ],
     },
     {

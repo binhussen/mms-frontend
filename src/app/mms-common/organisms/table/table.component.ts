@@ -8,7 +8,7 @@ import {
   ViewChild,
   EventEmitter,
   OnChanges,
-  SimpleChanges
+  SimpleChanges,
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { FormDialogComponent } from '../form-dialog/form-dialog.component';
@@ -58,7 +58,8 @@ export class TableComponent implements OnInit, AfterViewInit {
   filters = []; // TODO
   isColumnClickable: boolean = true;
   routeForDetailPage!: string;
-  loading = false; @ViewChild(MatPaginator) paginator!: MatPaginator;
+  loading = false;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
   @Input() form!: Form;
   pageSize = 5;
   dataSource = new MatTableDataSource<any>(this.data);
@@ -74,7 +75,7 @@ export class TableComponent implements OnInit, AfterViewInit {
     public tableService: TableService,
     private changeDetectorRefs: ChangeDetectorRef,
     private httpClient: HttpClient
-  ) { }
+  ) {}
 
   async ngOnInit() {
     this.tableState$ = this.store$.select(tableSelectors.getTableState);
@@ -161,7 +162,8 @@ export class TableComponent implements OnInit, AfterViewInit {
           'Save',
           action.form ?? this.form,
           action.submittedUrl ?? '',
-          action.type
+          action.type,
+          row
         );
         break;
       case 'reject':
@@ -171,6 +173,7 @@ export class TableComponent implements OnInit, AfterViewInit {
             id: row.id,
             submittedToUrl: action.path,
             action: action.type,
+            row,
           },
         };
         this.store$.dispatch(formActions.setRejectingForm(f));
@@ -251,6 +254,5 @@ export class TableComponent implements OnInit, AfterViewInit {
   }
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
-
   }
 }

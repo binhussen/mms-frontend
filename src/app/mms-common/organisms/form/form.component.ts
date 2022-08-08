@@ -241,7 +241,7 @@ export class FormComponent implements OnInit, OnDestroy {
             temp = [...temp, Validators.pattern('[0][9][0-9]{8}')];
             break;
           case 'fp':
-            temp = [...temp, Validators.pattern('')];
+            temp = [...temp, Validators.pattern('[0][0][0-9]{6}')];
             break;
         }
       }

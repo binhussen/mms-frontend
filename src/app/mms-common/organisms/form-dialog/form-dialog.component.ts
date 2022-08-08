@@ -125,15 +125,13 @@ export class FormDialogComponent implements OnInit {
           action: formData.id,
         },
       };
+
       this.store$.dispatch(formActions.setApprovingForm(f));
       this.store$
         .select((state) => state.form)
         .pipe(filter((f) => f.id === this.form.title))
         .subscribe((f) => {
           if (f.status == 'FAILED') {
-            // setTimeout(() => {
-            // }, 100);
-            //this.dialogRef.close();
             this.sanckbar.open('Approve Failed', 'close', {
               horizontalPosition: 'end',
               verticalPosition: 'top',
@@ -154,9 +152,9 @@ export class FormDialogComponent implements OnInit {
       const f = {
         value: {
           id: this.form.title,
-          data: { ...formData, id: this.row },
+          data: { ...this.row, ...formData },
           submittedToUrl: this.dataSourceUrl,
-          action: formData.type,
+          action: formData.id,
         },
       };
       this.store$.dispatch(formActions.setRejectingForm(f));
