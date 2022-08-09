@@ -16,7 +16,7 @@ const customerTableState: TableState = {
   pageSize: 5,
   totalItems: 0,
   data: [],
-  excludedColumns: ['id'],
+  excludedColumns: ['id', 'birthDate'],
   links: {
     getPath: dataSourceUrl,
     createPath: `${dataSourceUrl}`,

@@ -27,6 +27,7 @@ export class CrudHttpService extends BaseService<any> {
     super(httpClient, '');
   }
 
+  attachment = '&attachments=';
   manageFormSubmission() {
     // get submitted data from store
     // if the action is create, then create the resource with it's relations
@@ -149,7 +150,6 @@ export class CrudHttpService extends BaseService<any> {
         observer.next(null);
       });
     }
-    console.log(this.getUrl(url, data.id));
     return this.httpClient.put(`${this.getUrl(url, data.id)}`, data, {
       headers: this.headers,
     });
@@ -157,10 +157,9 @@ export class CrudHttpService extends BaseService<any> {
 
   rejectResource(value: any): Observable<any> {
     return this.httpClient.post(
-      `${this.getUrl(
-        value.submittedToUrl,
-        value.data.id
-      )}?status=Reject&status=Approve&attachments=${value.data.attachments}`,
+      `${this.getUrl(value.submittedToUrl, value.data.id)}?status=Reject${
+        value.data.attachments ? this.attachment + value.data.attachments : ''
+      }`,
       {
         headers: this.headers,
       }
@@ -171,11 +170,19 @@ export class CrudHttpService extends BaseService<any> {
     return this.httpClient.post(
       `${this.getUrl(value.submittedToUrl, value.data.id)}?qty=${
         value.data.approvedQuantity
-      }&status=Approve&attachments=${value.data.attachments}`,
+      }&status=Approve${
+        value.data.attachments ? this.attachment + value.data.attachments : ''
+      }`,
       {
         headers: this.headers,
       }
     );
+  }
+
+  distributeResource(value: any): Observable<any> {
+    return this.httpClient.post(`${value.submittedToUrl}`, value.row, {
+      headers: this.headers,
+    });
   }
 
   getSingleAndBulk(

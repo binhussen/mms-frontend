@@ -36,6 +36,11 @@ const setRejectingForm = createAction(
   props<{ value: FormData }>()
 );
 
+const submitDistribute = createAction(
+  '[Form] submit distribute',
+  props<{ value: any }>()
+);
+
 // const setUpdatingFormWithRelations = createAction(
 //   '[Form] update form with relations',
 //   props<{ value: FormData }>()
@@ -51,6 +56,7 @@ export default {
   submitUpdatingForm,
   setApprovingForm,
   setRejectingForm,
+  submitDistribute,
   // setUpdatingFormWithRelations,
   clearData,
 };

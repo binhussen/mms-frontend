@@ -1,9 +1,9 @@
 import { Action } from 'src/app/mms-common/organisms/table/table.component';
 export interface ResourceLinks {
   getPath: string;
-  createPath: string;
-  updatePath: string;
-  deletePath: string;
+  createPath?: string;
+  updatePath?: string;
+  deletePath?: string;
 }
 export interface RelationShip {
   type: string;

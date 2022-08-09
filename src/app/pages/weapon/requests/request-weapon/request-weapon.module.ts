@@ -10,8 +10,7 @@ import requestWeaponDetailPage from './request-weapon-detail.page';
 import approvePage from './approves.page';
 
 @NgModule({
-  declarations: [
-  ],
+  declarations: [],
   imports: [
     CommonModule,
     MmsCommonModule,
