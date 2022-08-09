@@ -179,6 +179,12 @@ export class CrudHttpService extends BaseService<any> {
     );
   }
 
+  distributeResource(value: any): Observable<any> {
+    return this.httpClient.post(`${value.submittedToUrl}`, value.row, {
+      headers: this.headers,
+    });
+  }
+
   getSingleAndBulk(
     data: any,
     relations: any,

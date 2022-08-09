@@ -88,6 +88,21 @@ export class FormEffect {
     )
   );
 
+  $submitDistribute = createEffect(() =>
+    this.actions$.pipe(
+      ofType(formActions.submitDistribute.type),
+      switchMap((action: { value: any }) =>
+        this.crudHttpService.distributeResource(action.value).pipe(
+          mergeMap((response) => [
+            formActions.formSubmittingSuccess({ value: response }),
+            tableActions.updateTableColumn({ value: action.value.data }),
+          ]),
+          catchError((err) => of(formActions.formSubmittingFailure(err)))
+        )
+      )
+    )
+  );
+
   constructor(
     private actions$: Actions,
     private crudHttpService: CrudHttpService

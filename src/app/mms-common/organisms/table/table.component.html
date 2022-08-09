@@ -12,6 +12,17 @@
     <div class="table-header-title" id="tableTitle">
       <h1>{{ tableState?.title! | translate }}</h1>
     </div>
+    <div>
+      <button
+        class="print"
+        mat-button
+        color="primary"
+        (click)="generateReport()"
+      >
+        <mat-icon>print</mat-icon>
+        {{ "formAction.report" | translate }}
+      </button>
+    </div>
     <div class="table-header-actions">
       <!-- ///////////////////////// -->
       <input
@@ -33,6 +44,7 @@
       </button>
 
       <button
+        *ngIf="tableState?.links?.createPath"
         mat-button
         color="primary"
         (click)="command({ type: 'create', name: 'Create New' }, undefined)"
@@ -76,11 +88,22 @@
               <!-- {{ column.cell(row)}} -->
               <mat-icon>file_download</mat-icon>
             </a>
-            <span *ngIf="column.columnDef != 'attachments'">{{
-              column.columnDef === "date"
-                ? (column.cell(row) | date)
-                : column.cell(row)
-            }}</span>
+            <span *ngIf="column.columnDef.includes('Id')">
+              <a href="admin/weapon/inventories/insert-weapon/1">{{
+                column.cell(row)
+              }}</a>
+            </span>
+            <span
+              *ngIf="
+                column.columnDef != 'attachments' &&
+                !column.columnDef.includes('Id')
+              "
+              >{{
+                column.columnDef.toLowerCase().includes("date")
+                  ? (column.cell(row) | date)
+                  : column.cell(row)
+              }}</span
+            >
           </ng-container>
 
           <ng-container *ngIf="!column.cell(row) && column.columnDef == 'No'">
@@ -128,11 +151,6 @@
       </mat-paginator>
     </div>
   </ng-container>
-
-  <button class="print" mat-button color="primary" (click)="generateReport()">
-    <mat-icon>print</mat-icon>
-    {{ "formAction.report" | translate }}
-  </button>
 </ng-container>
 
 <ng-template #noRecordTemplate>

@@ -26,6 +26,7 @@ import { concat, Observable, of } from 'rxjs';
 import { TableState } from 'src/app/store/models/table.state';
 import tableActions from 'src/app/store/actions/table.actions';
 import formActions from 'src/app/store/actions/form.actions';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 export type ActionType =
   | 'create'
@@ -33,6 +34,7 @@ export type ActionType =
   | 'edit'
   | 'delete'
   | 'approve'
+  | 'approvedList'
   | 'reject'
   | 'view'
   | 'distribute'
@@ -74,7 +76,7 @@ export class TableComponent implements OnInit, AfterViewInit {
     private store$: Store<AppState>,
     public tableService: TableService,
     private changeDetectorRefs: ChangeDetectorRef,
-    private httpClient: HttpClient
+    private sanckbar: MatSnackBar
   ) {}
 
   async ngOnInit() {
@@ -178,8 +180,23 @@ export class TableComponent implements OnInit, AfterViewInit {
         };
         this.store$.dispatch(formActions.setRejectingForm(f));
         break;
-      case 'distribute':
+      case 'approvedList':
         this.router.navigate([`${this.router.url}/approves/${row['id']}`]);
+        break;
+      case 'distribute':
+        const data = {
+          value: {
+            submittedToUrl: this.links.updatePath,
+            action: action.type,
+            row: { approveId: row.id },
+          },
+        };
+        this.store$.dispatch(formActions.submitDistribute(data));
+        this.sanckbar.open('Distribute Successfully', 'close', {
+          horizontalPosition: 'end',
+          verticalPosition: 'top',
+          panelClass: 'notif-success',
+        });
         break;
       default:
         console.log('unknown action');
