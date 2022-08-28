@@ -184,22 +184,14 @@ export class TableComponent implements OnInit, AfterViewInit {
         this.router.navigate([`${this.router.url}/approves/${row['id']}`]);
         break;
       case 'distribute':
-        const data = {
-          value: {
-            submittedToUrl: this.links.updatePath,
-            action: action.type,
-            row: { approveId: row.id },
-          },
-        };
-        this.store$.dispatch(formActions.submitDistribute(data));
-        this.sanckbar.open('Distribute Successfully', 'close', {
-          horizontalPosition: 'end',
-          verticalPosition: 'top',
-          panelClass: 'notif-success',
-        });
+        this.openDialog(
+          'Save',
+          action.form ?? this.form,
+          action.submittedUrl ?? '',
+          action.type,
+          row
+        );
         break;
-      default:
-        console.log('unknown action');
     }
   }
   //////////////////
