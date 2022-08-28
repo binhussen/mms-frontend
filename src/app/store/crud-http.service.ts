@@ -155,9 +155,11 @@ export class CrudHttpService extends BaseService<any> {
     });
   }
 
-  rejectResource(value: any): Observable<any> {
+  approveResource(value: any): Observable<any> {
     return this.httpClient.post(
-      `${this.getUrl(value.submittedToUrl, value.data.id)}?status=reject${
+      `${this.getUrl(value.submittedToUrl, value.data.id)}?qty=${
+        value.data.approvedQuantity
+      }&status=approve${
         value.data.attachments ? this.attachment + value.data.attachments : ''
       }`,
       {
@@ -166,11 +168,9 @@ export class CrudHttpService extends BaseService<any> {
     );
   }
 
-  approveResource(value: any): Observable<any> {
+  rejectResource(value: any): Observable<any> {
     return this.httpClient.post(
-      `${this.getUrl(value.submittedToUrl, value.data.id)}?qty=${
-        value.data.approvedQuantity
-      }&status=approve${
+      `${this.getUrl(value.submittedToUrl, value.data.id)}?status=reject${
         value.data.attachments ? this.attachment + value.data.attachments : ''
       }`,
       {

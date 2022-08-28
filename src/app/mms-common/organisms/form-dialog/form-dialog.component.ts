@@ -88,7 +88,6 @@ export class FormDialogComponent implements OnInit {
         .select((state) => state.form)
         .pipe()
         .subscribe((f) => {
-          console.log(f);
           if (f.status == 'FAILED') {
             this.sanckbar.open(f.response.error, 'close', {
               horizontalPosition: 'end',
@@ -119,6 +118,7 @@ export class FormDialogComponent implements OnInit {
         .select((state) => state.form)
         .pipe(filter((f) => f.id === this.form.title))
         .subscribe((f) => {
+          console.log(f);
           if (f.status == 'FAILED') {
             this.sanckbar.open(f.response.error, 'close', {
               horizontalPosition: 'end',

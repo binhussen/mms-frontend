@@ -69,7 +69,9 @@ export class FormEffect {
             formActions.formSubmittingSuccess({ value: response }),
             tableActions.updateTableColumn({ value: action.value.data }),
           ]),
-          catchError((err) => of(formActions.formSubmittingFailure(err)))
+          catchError((err) =>
+            of(formActions.formSubmittingFailure({ value: err }))
+          )
         )
       )
     )
