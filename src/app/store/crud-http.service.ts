@@ -157,7 +157,7 @@ export class CrudHttpService extends BaseService<any> {
 
   rejectResource(value: any): Observable<any> {
     return this.httpClient.post(
-      `${this.getUrl(value.submittedToUrl, value.data.id)}?status=Reject${
+      `${this.getUrl(value.submittedToUrl, value.data.id)}?status=reject${
         value.data.attachments ? this.attachment + value.data.attachments : ''
       }`,
       {
