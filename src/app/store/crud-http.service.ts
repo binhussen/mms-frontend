@@ -135,13 +135,15 @@ export class CrudHttpService extends BaseService<any> {
   }
 
   createResource(data: any, url: string): Observable<any> {
-    if (Object.keys(data).length <= 1) {
-      console.log(data);
-      return new Observable((observer) => {
-        observer.next(null);
-      });
-    }
-    return this.httpClient.post(`${url}`, data, { headers: this.headers });
+    // if (Object.keys(data).length <= 1) {
+    //   console.log(data);
+    //   return new Observable((observer) => {
+    //     observer.next(null);
+    //   });
+    // }
+    return this.httpClient
+      .post(`${url}`, data, { headers: this.headers })
+      .pipe(tap((response) => console.log(response)));
   }
 
   updateResource(data: any, url: string): Observable<any> {
@@ -180,10 +182,14 @@ export class CrudHttpService extends BaseService<any> {
   }
 
   distributeResource(value: any): Observable<any> {
-    console.log(this.getUrl(value.submittedToUrl, value.data.id));
-    return this.httpClient.post(`${value.submittedToUrl}`, value.row, {
-      headers: this.headers,
-    });
+    return this.httpClient.post(
+      `${this.getUrl(value.submittedToUrl, value.data.id)}?qty=${
+        value.data.qty
+      }`,
+      {
+        headers: this.headers,
+      }
+    );
   }
 
   getSingleAndBulk(

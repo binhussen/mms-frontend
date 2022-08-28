@@ -59,6 +59,7 @@ export class FormDialogComponent implements OnInit {
         .select((state) => state.form)
         .pipe(filter((f) => f.id === this.form.title))
         .subscribe((f) => {
+          console.log(f);
           if (f.status == 'FAILED') {
             this.sanckbar.open(f.response.error, 'close', {
               horizontalPosition: 'end',
@@ -162,7 +163,7 @@ export class FormDialogComponent implements OnInit {
             });
           }
         });
-    } else if (formData.status == 'distribute') {
+    } else if (this.actionType == 'distribute') {
       const f = {
         value: {
           id: this.form.title,
@@ -172,11 +173,13 @@ export class FormDialogComponent implements OnInit {
         },
       };
 
-      this.store$.dispatch(formActions.setApprovingForm(f));
+      console.log(f);
+      this.store$.dispatch(formActions.setDistributionForm(f));
       this.store$
         .select((state) => state.form)
-        .pipe(filter((f) => f.id === this.form.title))
+        .pipe()
         .subscribe((f) => {
+          console.log(f);
           if (f.status == 'FAILED') {
             this.sanckbar.open(f.response.error, 'close', {
               horizontalPosition: 'end',
@@ -185,7 +188,7 @@ export class FormDialogComponent implements OnInit {
             });
           } else if (f.status == 'SUCCESS') {
             this.dialogRef.close();
-            this.sanckbar.open('Approved Successfully', 'close', {
+            this.sanckbar.open('Distributed Successfully', 'close', {
               horizontalPosition: 'end',
               verticalPosition: 'top',
               panelClass: 'notif-success',

@@ -13,15 +13,17 @@ export class FormEffect {
     this.actions$.pipe(
       ofType(formActions.setSubmittingForm.type),
       switchMap((action: { value: Omit<FormState, 'response'> }) =>
-        this.crudHttpService.manageFormSubmission().pipe(
-          mergeMap((response) => [
-            formActions.formSubmittingSuccess({ value: response }),
-            tableActions.addRow({ value: response[0] }),
-          ]),
-          catchError((error) =>
-            of(formActions.formSubmittingFailure({ value: error }))
+        this.crudHttpService
+          .createResource(action.value.data, action.value.submittedToUrl ?? '')
+          .pipe(
+            mergeMap((response) => [
+              formActions.formSubmittingSuccess({ value: response }),
+              tableActions.addRow({ value: response }),
+            ]),
+            catchError((error) =>
+              of(formActions.formSubmittingFailure({ value: error }))
+            )
           )
-        )
       )
     )
   );
