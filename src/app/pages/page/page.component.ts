@@ -58,7 +58,6 @@ export class PageComponent implements OnInit, OnDestroy {
                     if (val.name == 'requestItems') {
                       val.formArrayItems.map((item: any) => {
                         if (item.name == 'model') {
-                          console.log(response.data);
                           response.data.map((opt) => {
                             item.options = [
                               ...item.options,

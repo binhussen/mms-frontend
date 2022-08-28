@@ -170,7 +170,7 @@ export class CrudHttpService extends BaseService<any> {
     return this.httpClient.post(
       `${this.getUrl(value.submittedToUrl, value.data.id)}?qty=${
         value.data.approvedQuantity
-      }&status=Approve${
+      }&status=approve${
         value.data.attachments ? this.attachment + value.data.attachments : ''
       }`,
       {
