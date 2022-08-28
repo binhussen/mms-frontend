@@ -63,10 +63,12 @@ export class TableService {
       observe: 'response',
       params,
     });
+
     return httpResponse.pipe(
       map((data: HttpResponse<any>) => ({
         count: Number(data.headers.get('X-Total-Count') ?? '20'),
         data: data.body ?? [],
+        // pag: data,
       }))
     );
   }

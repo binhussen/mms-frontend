@@ -61,10 +61,11 @@ const requestForWeaponForm: Form = {
         },
         {
           name: 'model',
-          type: 'text',
+          type: 'select',
           placeholder: 'requestForWeapon.form.model',
           defaultValue: '',
           size: 3,
+          options: [],
           validations: [{ type: 'required', value: true }],
         },
         {
