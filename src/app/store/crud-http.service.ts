@@ -180,6 +180,7 @@ export class CrudHttpService extends BaseService<any> {
   }
 
   distributeResource(value: any): Observable<any> {
+    console.log(this.getUrl(value.submittedToUrl, value.data.id));
     return this.httpClient.post(`${value.submittedToUrl}`, value.row, {
       headers: this.headers,
     });

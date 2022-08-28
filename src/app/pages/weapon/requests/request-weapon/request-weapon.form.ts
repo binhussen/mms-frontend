@@ -155,9 +155,23 @@ const requestApprovalForm: Form = {
     },
   ],
 };
+const requestDistributeForm: Form = {
+  title: 'requestForWeapon.requestDistributeForm',
+  elements: [
+    {
+      name: 'qty',
+      type: 'number',
+      placeholder: 'Quantity',
+      defaultValue: 0,
+      size: 6,
+      validations: [{ type: 'required', value: true }],
+    },
+  ],
+};
 
 export default {
   requestForWeaponForm,
   requestItemForWeaponForm,
   requestApprovalForm,
+  requestDistributeForm,
 };

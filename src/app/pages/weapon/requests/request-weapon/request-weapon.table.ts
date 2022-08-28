@@ -16,8 +16,9 @@ const actions: Array<Action> = [
   },
   {
     name: 'approveList',
-    type: 'approvedList',
-    submittedUrl: `${baseApiUrl}requestapprove/[id]/`,
+    type: 'distribute',
+    form: requestWeaponForm.requestDistributeForm,
+    submittedUrl: `${baseApiUrl}distribute/[id]`,
   },
 ];
 
