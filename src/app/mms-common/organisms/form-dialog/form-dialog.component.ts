@@ -64,7 +64,7 @@ export class FormDialogComponent implements OnInit {
             // setTimeout(() => {
             // }, 100);
             //this.dialogRef.close();
-            this.sanckbar.open('Create Failed', 'close', {
+            this.sanckbar.open(f.response.error, 'close', {
               horizontalPosition: 'end',
               verticalPosition: 'top',
               panelClass: 'notif-success',
@@ -89,8 +89,6 @@ export class FormDialogComponent implements OnInit {
           action: this.actionType,
         },
       };
-
-      console.log(f);
       this.store$.dispatch(formActions.submitUpdatingForm(f));
       this.store$
         .select((state) => state.form)
@@ -100,7 +98,7 @@ export class FormDialogComponent implements OnInit {
             // setTimeout(() => {
             // }, 100);
             //this.dialogRef.close();
-            this.sanckbar.open('Update Failed', 'close', {
+            this.sanckbar.open(f.response.error, 'close', {
               horizontalPosition: 'end',
               verticalPosition: 'top',
               panelClass: 'notif-success',
@@ -132,7 +130,7 @@ export class FormDialogComponent implements OnInit {
         .pipe(filter((f) => f.id === this.form.title))
         .subscribe((f) => {
           if (f.status == 'FAILED') {
-            this.sanckbar.open('Approve Failed', 'close', {
+            this.sanckbar.open(f.response.error, 'close', {
               horizontalPosition: 'end',
               verticalPosition: 'top',
               panelClass: 'notif-success',
@@ -166,7 +164,7 @@ export class FormDialogComponent implements OnInit {
             // setTimeout(() => {
             // }, 100);
             //this.dialogRef.close();
-            this.sanckbar.open('Rejecte Failed', 'close', {
+            this.sanckbar.open(f.response.error, 'close', {
               horizontalPosition: 'end',
               verticalPosition: 'top',
               panelClass: 'notif-success',
