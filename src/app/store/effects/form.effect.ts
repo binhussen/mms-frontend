@@ -88,10 +88,10 @@ export class FormEffect {
     )
   );
 
-  $submitDistribute = createEffect(() =>
+  $distributeForm = createEffect(() =>
     this.actions$.pipe(
-      ofType(formActions.submitDistribute.type),
-      switchMap((action: { value: any }) =>
+      ofType(formActions.setDistributionForm.type),
+      switchMap((action: { value: FormData }) =>
         this.crudHttpService.distributeResource(action.value).pipe(
           mergeMap((response) => [
             formActions.formSubmittingSuccess({ value: response }),
