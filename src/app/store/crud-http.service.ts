@@ -141,17 +141,15 @@ export class CrudHttpService extends BaseService<any> {
     //     observer.next(null);
     //   });
     // }
-    return this.httpClient
-      .post(`${url}`, data, { headers: this.headers })
-      .pipe(tap((response) => console.log(response)));
+    return this.httpClient.post(`${url}`, data, { headers: this.headers });
   }
 
   updateResource(data: any, url: string): Observable<any> {
-    if (Object.keys(data).length <= 1) {
-      return new Observable((observer) => {
-        observer.next(null);
-      });
-    }
+    // if (Object.keys(data).length <= 1) {
+    //   return new Observable((observer) => {
+    //     observer.next(null);
+    //   });
+    // }
     return this.httpClient.put(`${this.getUrl(url, data.id)}`, data, {
       headers: this.headers,
     });
