@@ -36,9 +36,9 @@ const setRejectingForm = createAction(
   props<{ value: FormData }>()
 );
 
-const submitDistribute = createAction(
-  '[Form] submit distribute',
-  props<{ value: any }>()
+const setDistributionForm = createAction(
+  '[Form] distribute form',
+  props<{ value: Partial<FormState> }>()
 );
 
 // const setUpdatingFormWithRelations = createAction(
@@ -56,7 +56,7 @@ export default {
   submitUpdatingForm,
   setApprovingForm,
   setRejectingForm,
-  submitDistribute,
+  setDistributionForm,
   // setUpdatingFormWithRelations,
   clearData,
 };

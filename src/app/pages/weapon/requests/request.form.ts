@@ -35,14 +35,12 @@ const requestForWeaponForm: Form = {
         },
         {
           name: 'model',
-          type: 'text',
+          type: 'select',
           placeholder: 'Model',
           defaultValue: '',
           size: 4,
-          validations: [
-            { type: 'required', value: true },
-            { type: 'minLength', value: 3 },
-          ],
+          options: [],
+          validations: [{ type: 'required', value: true }],
         },
         {
           name: 'quantity',

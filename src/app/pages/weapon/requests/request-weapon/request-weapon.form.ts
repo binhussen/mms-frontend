@@ -61,10 +61,11 @@ const requestForWeaponForm: Form = {
         },
         {
           name: 'model',
-          type: 'text',
+          type: 'select',
           placeholder: 'requestForWeapon.form.model',
           defaultValue: '',
           size: 3,
+          options: [],
           validations: [{ type: 'required', value: true }],
         },
         {
@@ -154,9 +155,23 @@ const requestApprovalForm: Form = {
     },
   ],
 };
+const requestDistributeForm: Form = {
+  title: 'requestForWeapon.requestDistributeForm',
+  elements: [
+    {
+      name: 'qty',
+      type: 'number',
+      placeholder: 'Quantity',
+      defaultValue: 0,
+      size: 6,
+      validations: [{ type: 'required', value: true }],
+    },
+  ],
+};
 
 export default {
   requestForWeaponForm,
   requestItemForWeaponForm,
   requestApprovalForm,
+  requestDistributeForm,
 };

@@ -49,6 +49,30 @@ export class PageComponent implements OnInit, OnDestroy {
             )
             .subscribe();
 
+          this.tableService
+            .fetchData(0, 5, 'http://localhost:5000/api/items')
+            .pipe(
+              map((response) => {
+                if (data.title == 'Request For Weapon') {
+                  data.form.elements.map((val: any) => {
+                    if (val.name == 'requestItems') {
+                      val.formArrayItems.map((item: any) => {
+                        if (item.name == 'model') {
+                          response.data.map((opt) => {
+                            item.options = [
+                              ...item.options,
+                              { value: opt.model, label: opt.model },
+                            ];
+                          });
+                        }
+                      });
+                    }
+                  });
+                }
+              })
+            )
+            .subscribe();
+
           this.activatedRoute.snapshot.params.id
             ? (data.table.links.getPath = `${data.table.links.getPath}/${this.activatedRoute.snapshot.params.id}`)
             : data.table.links.getPath;

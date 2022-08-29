@@ -135,29 +135,31 @@ export class CrudHttpService extends BaseService<any> {
   }
 
   createResource(data: any, url: string): Observable<any> {
-    if (Object.keys(data).length <= 1) {
-      console.log(data);
-      return new Observable((observer) => {
-        observer.next(null);
-      });
-    }
+    // if (Object.keys(data).length <= 1) {
+    //   console.log(data);
+    //   return new Observable((observer) => {
+    //     observer.next(null);
+    //   });
+    // }
     return this.httpClient.post(`${url}`, data, { headers: this.headers });
   }
 
   updateResource(data: any, url: string): Observable<any> {
-    if (Object.keys(data).length <= 1) {
-      return new Observable((observer) => {
-        observer.next(null);
-      });
-    }
+    // if (Object.keys(data).length <= 1) {
+    //   return new Observable((observer) => {
+    //     observer.next(null);
+    //   });
+    // }
     return this.httpClient.put(`${this.getUrl(url, data.id)}`, data, {
       headers: this.headers,
     });
   }
 
-  rejectResource(value: any): Observable<any> {
+  approveResource(value: any): Observable<any> {
     return this.httpClient.post(
-      `${this.getUrl(value.submittedToUrl, value.data.id)}?status=Reject${
+      `${this.getUrl(value.submittedToUrl, value.data.id)}?qty=${
+        value.data.approvedQuantity
+      }&status=approve${
         value.data.attachments ? this.attachment + value.data.attachments : ''
       }`,
       {
@@ -166,11 +168,9 @@ export class CrudHttpService extends BaseService<any> {
     );
   }
 
-  approveResource(value: any): Observable<any> {
+  rejectResource(value: any): Observable<any> {
     return this.httpClient.post(
-      `${this.getUrl(value.submittedToUrl, value.data.id)}?qty=${
-        value.data.approvedQuantity
-      }&status=Approve${
+      `${this.getUrl(value.submittedToUrl, value.data.id)}?status=reject${
         value.data.attachments ? this.attachment + value.data.attachments : ''
       }`,
       {
@@ -180,9 +180,14 @@ export class CrudHttpService extends BaseService<any> {
   }
 
   distributeResource(value: any): Observable<any> {
-    return this.httpClient.post(`${value.submittedToUrl}`, value.row, {
-      headers: this.headers,
-    });
+    return this.httpClient.post(
+      `${this.getUrl(value.submittedToUrl, value.data.id)}?qty=${
+        value.data.qty
+      }`,
+      {
+        headers: this.headers,
+      }
+    );
   }
 
   getSingleAndBulk(

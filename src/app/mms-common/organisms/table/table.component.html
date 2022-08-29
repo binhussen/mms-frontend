@@ -22,6 +22,16 @@
         <mat-icon>print</mat-icon>
         {{ "formAction.report" | translate }}
       </button>
+      <button
+        class="print"
+        mat-button
+        color="primary"
+        (click)="generateIdCard()"
+      >
+        <mat-icon>print</mat-icon>
+        መታወቂያ
+      </button>
+      <div id="print-section"></div>
     </div>
     <div class="table-header-actions">
       <!-- ///////////////////////// -->

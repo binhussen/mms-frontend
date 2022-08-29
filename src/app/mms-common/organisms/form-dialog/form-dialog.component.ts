@@ -42,7 +42,6 @@ export class FormDialogComponent implements OnInit {
     this.dataSourceUrl = dataSourceUrl;
     this.actionType = actionType;
     this.row = row;
-    // this.id=row.id??'';
   }
   onSubmit(formData: any) {
     const f = {
@@ -61,17 +60,12 @@ export class FormDialogComponent implements OnInit {
         .pipe(filter((f) => f.id === this.form.title))
         .subscribe((f) => {
           if (f.status == 'FAILED') {
-            // setTimeout(() => {
-            // }, 100);
-            //this.dialogRef.close();
-            this.sanckbar.open('Create Failed', 'close', {
+            this.sanckbar.open(f.response.error, 'close', {
               horizontalPosition: 'end',
               verticalPosition: 'top',
               panelClass: 'notif-success',
             });
           } else if (f.status == 'SUCCESS') {
-            // setTimeout(() => {
-            // }, 100);
             this.dialogRef.close();
             this.sanckbar.open('Created Successfully', 'close', {
               horizontalPosition: 'end',
@@ -89,25 +83,18 @@ export class FormDialogComponent implements OnInit {
           action: this.actionType,
         },
       };
-
-      console.log(f);
       this.store$.dispatch(formActions.submitUpdatingForm(f));
       this.store$
         .select((state) => state.form)
         .pipe()
         .subscribe((f) => {
           if (f.status == 'FAILED') {
-            // setTimeout(() => {
-            // }, 100);
-            //this.dialogRef.close();
-            this.sanckbar.open('Update Failed', 'close', {
+            this.sanckbar.open(f.response.error, 'close', {
               horizontalPosition: 'end',
               verticalPosition: 'top',
               panelClass: 'notif-success',
             });
           } else if (f.status == 'SUCCESS') {
-            // setTimeout(() => {
-            // }, 100);
             this.dialogRef.close();
             this.sanckbar.open('Updated Successfully', 'close', {
               horizontalPosition: 'end',
@@ -131,15 +118,14 @@ export class FormDialogComponent implements OnInit {
         .select((state) => state.form)
         .pipe(filter((f) => f.id === this.form.title))
         .subscribe((f) => {
+          console.log(f);
           if (f.status == 'FAILED') {
-            this.sanckbar.open('Approve Failed', 'close', {
+            this.sanckbar.open(f.response.error, 'close', {
               horizontalPosition: 'end',
               verticalPosition: 'top',
               panelClass: 'notif-success',
             });
           } else if (f.status == 'SUCCESS') {
-            // setTimeout(() => {
-            // }, 100);
             this.dialogRef.close();
             this.sanckbar.open('Approved Successfully', 'close', {
               horizontalPosition: 'end',
@@ -163,19 +149,46 @@ export class FormDialogComponent implements OnInit {
         .pipe(filter((f) => f.id === this.form.title))
         .subscribe((f) => {
           if (f.status == 'FAILED') {
-            // setTimeout(() => {
-            // }, 100);
-            //this.dialogRef.close();
-            this.sanckbar.open('Rejecte Failed', 'close', {
+            this.sanckbar.open(f.response.error, 'close', {
               horizontalPosition: 'end',
               verticalPosition: 'top',
               panelClass: 'notif-success',
             });
           } else if (f.status == 'SUCCESS') {
-            // setTimeout(() => {
-            // }, 100);
             this.dialogRef.close();
             this.sanckbar.open('Rejected Successfully', 'close', {
+              horizontalPosition: 'end',
+              verticalPosition: 'top',
+              panelClass: 'notif-success',
+            });
+          }
+        });
+    } else if (this.actionType == 'distribute') {
+      const f = {
+        value: {
+          id: this.form.title,
+          data: { ...this.row, ...formData },
+          submittedToUrl: this.dataSourceUrl,
+          action: formData.id,
+        },
+      };
+
+      console.log(f);
+      this.store$.dispatch(formActions.setDistributionForm(f));
+      this.store$
+        .select((state) => state.form)
+        .pipe()
+        .subscribe((f) => {
+          console.log(f);
+          if (f.status == 'FAILED') {
+            this.sanckbar.open(f.response.error, 'close', {
+              horizontalPosition: 'end',
+              verticalPosition: 'top',
+              panelClass: 'notif-success',
+            });
+          } else if (f.status == 'SUCCESS') {
+            this.dialogRef.close();
+            this.sanckbar.open('Distributed Successfully', 'close', {
               horizontalPosition: 'end',
               verticalPosition: 'top',
               panelClass: 'notif-success',

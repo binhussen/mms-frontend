@@ -31,7 +31,7 @@ export const formReducer = createReducer(
     ...state,
     ...value,
     updating: value,
-    status:'PENDING'
+    status: 'PENDING',
   })),
   on(formActions.setApprovingForm, (state, { value }) => ({
     ...state,
@@ -39,6 +39,11 @@ export const formReducer = createReducer(
     status: 'PENDING',
   })),
   on(formActions.setRejectingForm, (state, { value }) => ({
+    ...state,
+    ...value,
+    status: 'PENDING',
+  })),
+  on(formActions.setDistributionForm, (state, { value }) => ({
     ...state,
     ...value,
     status: 'PENDING',
