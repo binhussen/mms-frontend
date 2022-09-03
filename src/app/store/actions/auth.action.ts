@@ -6,18 +6,18 @@ const setLoginForm = createAction(
   props<{ value: Partial<FormState> }>()
 );
 
-const formLoginSuccess = createAction(
-  '[Form] form submitting success',
+const authSuccess = createAction(
+  '[Form] auth submitting success',
   props<{ value: any }>()
 );
 
-const formLoginFailure = createAction(
-  '[Form] form submitting failure',
+const authFailure = createAction(
+  '[Form] auth submitting failure',
   props<{ value: any }>()
 );
 
 export default {
   setLoginForm,
-  formLoginSuccess,
-  formLoginFailure,
+  authSuccess,
+  authFailure,
 };
