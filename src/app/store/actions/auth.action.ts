@@ -1,18 +1,23 @@
 import { createAction, props } from '@ngrx/store';
-import { FormData, FormState } from '../models/form.state';
+import { AuthState } from '../models/auth.state';
 
 const setLoginForm = createAction(
-  '[Form] submit form',
-  props<{ value: Partial<FormState> }>()
+  '[Auth] auth submit',
+  props<{ value: Partial<AuthState> }>()
 );
 
 const authSuccess = createAction(
-  '[Form] auth submitting success',
+  '[Auth] auth submitting success',
   props<{ value: any }>()
 );
 
 const authFailure = createAction(
-  '[Form] auth submitting failure',
+  '[Auth] auth submitting failure',
+  props<{ value: any }>()
+);
+
+const routeDashboard = createAction(
+  '[Auth] auth route dashboard',
   props<{ value: any }>()
 );
 
@@ -20,4 +25,5 @@ export default {
   setLoginForm,
   authSuccess,
   authFailure,
+  routeDashboard,
 };
