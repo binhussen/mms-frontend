@@ -12,12 +12,17 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { metaReducers, reducers } from './store/reducers';
 import { FormEffect } from './store/effects/form.effect';
-import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpClientModule,
+  HTTP_INTERCEPTORS,
+} from '@angular/common/http';
 import { TableEffect } from './store/effects/table.effect';
 /* internationalization */
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TokenInterceptor } from './Auths/interceptor/token.interceptor';
+import { AuthEffect } from './store/effects/auth.effect';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -42,14 +47,14 @@ export function createTranslateLoader(http: HttpClient) {
     StoreModule.forRoot(reducers, {
       metaReducers,
     }),
-    EffectsModule.forRoot([FormEffect, TableEffect]),
+    EffectsModule.forRoot([FormEffect, TableEffect, AuthEffect]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,
     }),
   ],
   providers: [
-    {provide:HTTP_INTERCEPTORS, useClass:TokenInterceptor, multi:true}
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
 })
