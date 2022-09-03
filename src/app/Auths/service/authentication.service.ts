@@ -2,6 +2,7 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { authenticationResponse, userCredentials } from '../model/user.model';
 
@@ -11,7 +12,7 @@ import { authenticationResponse, userCredentials } from '../model/user.model';
 export class AuthenticationService {
   private baseApiUrl = environment.baseApiUrl;
 
-  private readonly tokenKey = 'token';
+  private readonly tokenKey = 'mmsToken';
   private readonly expirationTokenKey = 'token-expiration';
   private readonly roleField = 'role';
   private readonly userName = 'name';
@@ -61,11 +62,13 @@ export class AuthenticationService {
   }
 
   login(data: userCredentials, url: string): Observable<any> {
-    return this.http.post(url, data);
+    return this.http
+      .post(url, data)
+      .pipe(map((response) => this.saveToken(response)));
   }
 
-  saveToken(authenticationResponse: authenticationResponse) {
-    localStorage.setItem(this.tokenKey, JSON.stringify(authenticationResponse));
+  saveToken({ wellCome }: any) {
+    localStorage.setItem(this.tokenKey, JSON.stringify(wellCome));
   }
 
   getToken() {
