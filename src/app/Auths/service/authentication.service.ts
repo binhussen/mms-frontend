@@ -3,23 +3,19 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { authenticationResponse,userCredentials} from '../model/user.model';
+import { authenticationResponse, userCredentials } from '../model/user.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthenticationService {
-
   private baseApiUrl = environment.baseApiUrl;
 
   private readonly tokenKey = 'token';
   private readonly expirationTokenKey = 'token-expiration';
   private readonly roleField = 'role';
   private readonly userName = 'name';
-  constructor(
-      private http: HttpClient,
-      private router: Router 
-  ) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   isAuthenticated(): boolean {
     const token = localStorage.getItem(this.tokenKey);
@@ -38,7 +34,7 @@ export class AuthenticationService {
     return true;
   }
 
-  getFieldFromJWT(field: string):string {
+  getFieldFromJWT(field: string): string {
     const token = localStorage.getItem(this.tokenKey);
     if (!token) {
       return 'invalid token';
@@ -48,7 +44,7 @@ export class AuthenticationService {
     const name = 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/';
     if (field == 'role') {
       return dataToken[role + field];
-    }else if (field == 'name') {
+    } else if (field == 'name') {
       return dataToken[name + field];
     }
     return token;
@@ -60,18 +56,12 @@ export class AuthenticationService {
     this.router.navigateByUrl('/login');
   }
 
-  
-
   getUserName(): string {
     return this.getFieldFromJWT(this.userName);
   }
 
-
-  login(userCredentials: userCredentials): Observable<authenticationResponse> {
-    return this.http.post<authenticationResponse>(
-      this.baseApiUrl + 'authentications/login',
-      userCredentials
-    );
+  login(data: userCredentials, url: string): Observable<any> {
+    return this.http.post(url, data);
   }
 
   saveToken(authenticationResponse: authenticationResponse) {
