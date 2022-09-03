@@ -3,4 +3,6 @@ export interface AuthState {
   status: 'PENDING' | 'FAILED' | 'SUCCESS' | null;
   token: string | null;
   submittedToUrl: string | null;
+  data: any;
+  action: any;
 }
