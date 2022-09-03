@@ -2,7 +2,7 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { authenticationResponse, userCredentials } from '../model/user.model';
 
@@ -13,18 +13,18 @@ export class AuthenticationService {
   private baseApiUrl = environment.baseApiUrl;
 
   private readonly tokenKey = 'mmsToken';
-  private readonly expirationTokenKey = 'token-expiration';
   private readonly roleField = 'role';
   private readonly userName = 'name';
   constructor(private http: HttpClient, private router: Router) {}
 
   isAuthenticated(): boolean {
-    const token = localStorage.getItem(this.tokenKey);
+    const token = JSON.parse(localStorage.getItem(this.tokenKey) ?? '');
     if (token) {
       return false;
     }
+    console.log(token);
 
-    const expiration = localStorage.getItem(this.expirationTokenKey);
+    const expiration = localStorage.getItem(this.tokenKey);
     const expirationDate = new Date(expiration!);
 
     if (expirationDate <= new Date()) {
@@ -53,7 +53,6 @@ export class AuthenticationService {
 
   logout() {
     localStorage.removeItem(this.tokenKey);
-    localStorage.removeItem(this.expirationTokenKey);
     this.router.navigateByUrl('/login');
   }
 
@@ -64,7 +63,7 @@ export class AuthenticationService {
   login(data: userCredentials, url: string): Observable<any> {
     return this.http
       .post(url, data)
-      .pipe(map((response) => this.saveToken(response)));
+      .pipe(tap((response) => this.saveToken(response)));
   }
 
   saveToken({ wellCome }: any) {
