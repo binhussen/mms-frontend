@@ -3,9 +3,11 @@ import loginForm from './login.form';
 import { Form } from '../../mms-common/models/form';
 import { transition, trigger, useAnimation } from '@angular/animations';
 import { fadeIn } from 'ng-animate';
-import { AuthenticationService } from 'src/app/Auths/service/authentication.service';
 import { Router } from '@angular/router';
-
+import { environment } from 'src/environments/environment';
+import authAction from 'src/app/store/actions/auth.action';
+import { AppState } from 'src/app/store/models/app.state';
+import { Store } from '@ngrx/store';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -22,27 +24,35 @@ import { Router } from '@angular/router';
   ],
 })
 export class LoginComponent implements OnInit {
+  baseApiUrl = environment.baseApiUrl;
   form!: Form;
   formComponent: any;
-  constructor( private authicationService: AuthenticationService, private router: Router) {}
+  constructor(private router: Router, private store$: Store<AppState>) {}
 
   ngOnInit(): void {
     this.form = loginForm;
   }
 
-  onSubmit(event: any) {
-    console.log(event);
-
-    this.authicationService.login(event).subscribe(
-      (authenticationResponse) => {
-        this.authicationService.saveToken(authenticationResponse);
-        this.router.navigate(['admin/dashboard']);
+  onSubmit(data: any) {
+    const f = {
+      value: {
+        submittedToUrl: this.baseApiUrl + 'authentications/login',
+        action: 'login',
+        data: data,
       },
-      // error handler
-      (error) => (
-        window.alert('Incorrect Credential')
-          ),
-    
-  );
+    };
+    this.store$.dispatch(authAction.setLoginForm(f));
+
+    //   this.authicationService.login(event).subscribe(
+    //     (authenticationResponse) => {
+    //       this.authicationService.saveToken(authenticationResponse);
+    //       this.router.navigate(['admin/dashboard']);
+    //     },
+    //     // error handler
+    //     (error) => (
+    //       window.alert('Incorrect Credential')
+    //         ),
+
+    // );
   }
 }
