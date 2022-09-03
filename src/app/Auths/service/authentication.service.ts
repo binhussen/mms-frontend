@@ -69,6 +69,7 @@ export class AuthenticationService {
 
   saveToken({ wellCome }: any) {
     localStorage.setItem(this.tokenKey, JSON.stringify(wellCome));
+    this.router.navigate(['admin/dashboard']);
   }
 
   getToken() {

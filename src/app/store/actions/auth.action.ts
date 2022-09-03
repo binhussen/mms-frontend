@@ -16,14 +16,8 @@ const authFailure = createAction(
   props<{ value: any }>()
 );
 
-const routeDashboard = createAction(
-  '[Auth] auth route dashboard',
-  props<{ value: any }>()
-);
-
 export default {
   setLoginForm,
   authSuccess,
   authFailure,
-  routeDashboard,
 };

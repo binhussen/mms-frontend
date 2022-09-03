@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, mergeMap, switchMap } from 'rxjs/operators';
-import { of } from 'rxjs';
+import { of, pipe } from 'rxjs';
 import authAction from '../actions/auth.action';
 import { AuthState } from '../models/auth.state';
 import { AuthenticationService } from 'src/app/Auths/service/authentication.service';
@@ -17,7 +17,6 @@ export class AuthEffect {
           .pipe(
             mergeMap((response) => [
               authAction.authSuccess({ value: response }),
-              authAction.routeDashboard({ value: response }),
             ]),
             catchError((error) => of(authAction.authFailure({ value: error })))
           )
