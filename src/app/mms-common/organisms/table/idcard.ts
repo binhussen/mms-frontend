@@ -23,7 +23,7 @@ export const idCardDocument = `<html>
         clear: both;
       }
       .camp {
-        width: 40%;
+        width: 80%;
         float: left;
         color: #fff;
       }
@@ -52,7 +52,7 @@ export const idCardDocument = `<html>
         margin: 12px 6px;
       }
       .content ul {
-        width: 50%;
+        width: 65%;
         float: left;
         padding-left: 15px;
       }
@@ -65,10 +65,8 @@ export const idCardDocument = `<html>
       }
 
       .outcard{
-            position: relative;
     background: #000;
     height: 3rem;
-    bottom: -28px;
       }
       .btn{
         margin: 0 auto;
@@ -87,8 +85,8 @@ export const idCardDocument = `<html>
     <div id="result" class="card">
       <header id="head">
         <div class="camp">
-          <h4>Ethiopian</h4>
-          <span>Federal police</span>
+          <h4>በፌ/ፖ/ኮ/አስ/ር ልማት ዘርፍ ንብ/አስ/ጠቅ/አገ/ዋና/መ</h4>
+          <span>የጦር መሳሪያ ፍቃድ</span>
         </div>
         <img src="/assets/img/logo.png" id="logo" />
       </header>
@@ -96,10 +94,14 @@ export const idCardDocument = `<html>
       <div class="content">
         <img src="" id="imgDisplayed" />
         <ul>
-          <li id="name">Name: Mohammed Hussen Abdu</li>
-          <li id="birth">BirthDate: may 18, 1997</li>
-          <li id="fieldYear"></li>
-          <li>:<span id="num"></span></li>
+          <li id="name">ስም:___________</li>
+          <li id="birth">ዜግነት:______________</li>
+          <li id="fieldYear">የስራ ክፍል፡___________</li>
+          <li id="fieldYear">የመኖሪያ አድራሻ፡________</li>
+          <li id="fieldYear">ሞባይል፡___________</li>
+          <li id="fieldYear">የስራ ክፍል፡___________</li>
+          <li id="fieldYear">አደጋ ጊዜ ተጠሪ፡___________</li>
+          <!--<li>:<span id="num"></span></li>--> 
         </ul>
       </div>
     </div>
@@ -107,10 +109,13 @@ export const idCardDocument = `<html>
     <div id="result" class="card">
       <div class="content">
         <ul>
-          <li id="name">መልክ፡ ጥይም</li>
-          <li id="birth">የቅርብ ተጠሪ፡ መሀመድ ሁሴን/0923692424</li>
-          <li id="fieldYear"></li>
-          <li>:<span id="num">ይህን መትወቂያ ወድቆ ካገኙ ____ይደውሉ</span></li>
+          <li id="name">የመሳሪያ አይነት፡_________</li>
+          <li id="birth">የወግ ቁጥር፡____________</li>
+          <li id="fieldYear">የጥይት ብዛት፡____________</li>
+          <li id="fieldYear">የካርታ ብዛት፡____________</li>
+          <li id="fieldYear">የታጠቀበት ቀን፡_________</li>
+          <li id="fieldYear">ፍቃድ የሰጠው ክፍል፡______</li>
+          <li id="fieldYear">የሃላፊው ስም፡______</li>
         </ul>
       </div>
       <div class="outCard"></div>
