@@ -25,8 +25,17 @@ export class AuthenticationService {
 
   isAuthenticated(): boolean {
     let expirationDate, token;
-    token = JSON.parse(localStorage.getItem(this.tokenKey) ?? '');
-    expirationDate = new Date(token.expiration!);
+    this.store$
+      .select((state) => state.auth)
+      .pipe()
+      .subscribe((f) => {
+        if (f.action === 'login' && f.status === 'SUCCESS') {
+          expirationDate = new Date(f.response.wellCome.expiration);
+        } else {
+          token = JSON.parse(localStorage.getItem(this.tokenKey) ?? '');
+          expirationDate = new Date(token.expiration!);
+        }
+      });
 
     if (expirationDate <= new Date() || !expirationDate) {
       this.logout();
