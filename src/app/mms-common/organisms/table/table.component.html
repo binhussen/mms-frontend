@@ -23,6 +23,7 @@
         {{ "formAction.report" | translate }}
       </button>
       <button
+        *ngIf="idCardPrint"
         class="print"
         mat-button
         color="primary"

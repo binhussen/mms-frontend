@@ -55,6 +55,7 @@ export interface Action {
   styleUrls: ['./table.component.scss'],
 })
 export class TableComponent implements OnInit, AfterViewInit {
+  idCardPrint: boolean = false;
   data!: Array<any>; // or url
   displayedColumns!: Array<any>;
   columns!: Array<any>;
@@ -235,7 +236,9 @@ export class TableComponent implements OnInit, AfterViewInit {
             this.data,
             excludedColumns ?? []
           );
-          console.log(totalItems);
+          data.map((item) => {
+            if (item.status === 'distribute') this.idCardPrint = true;
+          });
           this.displayedColumns = this.tableService.getDisplayedColumns(
             this.columns
           );
