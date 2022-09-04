@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
+import authAction from 'src/app/store/actions/auth.action';
 import { AppState } from 'src/app/store/models/app.state';
 import { environment } from 'src/environments/environment';
 import { authenticationResponse, userCredentials } from '../model/user.model';
@@ -42,6 +43,9 @@ export class AuthenticationService {
       return false;
     }
 
+    this.store$.dispatch(
+      authAction.authSuccess({ value: { wellCome: token } })
+    );
     return true;
   }
 
