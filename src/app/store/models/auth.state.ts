@@ -5,4 +5,5 @@ export interface AuthState {
   submittedToUrl: string | null;
   data: any;
   action: any;
+  response: any;
 }

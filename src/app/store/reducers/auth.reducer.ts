@@ -8,6 +8,7 @@ export const initialState: AuthState = {
   token: null,
   action: null,
   data: null,
+  response: null,
 };
 export const authReducer = createReducer(
   initialState,

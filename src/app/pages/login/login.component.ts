@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
 import authAction from 'src/app/store/actions/auth.action';
 import { AppState } from 'src/app/store/models/app.state';
 import { Store } from '@ngrx/store';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -26,7 +27,7 @@ export class LoginComponent implements OnInit {
   baseApiUrl = environment.baseApiUrl;
   form!: Form;
   formComponent: any;
-  constructor(private store$: Store<AppState>) {}
+  constructor(private store$: Store<AppState>, private snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
     this.form = loginForm;
@@ -41,5 +42,21 @@ export class LoginComponent implements OnInit {
       },
     };
     this.store$.dispatch(authAction.setLoginForm(f));
+    this.store$
+      .select((state) => state.auth)
+      .pipe()
+      .subscribe((f) => {
+        f.action === 'login' &&
+          f.status === 'FAILED' &&
+          this.snackBar.open(
+            f.response.error.status + ' ' + f.response.error.title,
+            'close',
+            {
+              horizontalPosition: 'end',
+              verticalPosition: 'top',
+              panelClass: 'notif-success',
+            }
+          );
+      });
   }
 }
