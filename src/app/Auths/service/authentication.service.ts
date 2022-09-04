@@ -37,15 +37,24 @@ export class AuthenticationService {
           expirationDate = new Date(token.expiration!);
         }
       });
-
-    if (expirationDate <= new Date() || !expirationDate) {
+    if (!expirationDate) {
+      authAction.authFailure({
+        value: {
+          response: {
+            error: { status: 401, title: 'Your are not Authorized' },
+          },
+        },
+      });
+      return false;
+    } else if (expirationDate <= new Date()) {
       this.logout();
       return false;
+    } else if (expirationDate > new Date()) {
+      this.store$.dispatch(
+        authAction.authSuccess({ value: { wellCome: token } })
+      );
+      return true;
     }
-
-    this.store$.dispatch(
-      authAction.authSuccess({ value: { wellCome: token } })
-    );
     return true;
   }
 
@@ -66,6 +75,11 @@ export class AuthenticationService {
   }
 
   logout() {
+    authAction.authFailure({
+      value: {
+        response: { error: { status: 401, title: 'Your Token is Expired' } },
+      },
+    });
     localStorage.removeItem(this.tokenKey);
     this.router.navigateByUrl('/login');
   }
