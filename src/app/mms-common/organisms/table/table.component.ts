@@ -27,6 +27,7 @@ import { TableState } from 'src/app/store/models/table.state';
 import tableActions from 'src/app/store/actions/table.actions';
 import formActions from 'src/app/store/actions/form.actions';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { idCardDocument } from './idcard';
 
 export type ActionType =
   | 'create'
@@ -54,6 +55,7 @@ export interface Action {
   styleUrls: ['./table.component.scss'],
 })
 export class TableComponent implements OnInit, AfterViewInit {
+  idCardPrint: boolean = false;
   data!: Array<any>; // or url
   displayedColumns!: Array<any>;
   columns!: Array<any>;
@@ -208,21 +210,17 @@ export class TableComponent implements OnInit, AfterViewInit {
     document.body.innerHTML = originalContents;
   }
   generateIdCard() {
-    console.log('id print');
     let printContents, popupWin;
     printContents = document.getElementById('print-section')!.innerHTML;
-    popupWin = window.open('', '_blank', 'top=0,left=0,height=100%,width=auto');
+    popupWin = window.open(
+      '',
+      '_blank',
+      'top=100px,left=300px,height=600px,width=600px'
+    );
     popupWin!.document.open();
-    popupWin!.document.write(`
-      <html>
-        <head>
-          <title>Print tab</title>
-          <style>
-          //........Customized style.......
-          </style>
-        </head>
-    <body onload="window.print();window.close()">${printContents}</body>
-      </html>`);
+    popupWin!.document.write(idCardDocument);
+    ///prev
+
     // popupWin!.document.close();
   }
   ////////////////////////////////
@@ -238,7 +236,9 @@ export class TableComponent implements OnInit, AfterViewInit {
             this.data,
             excludedColumns ?? []
           );
-          console.log(totalItems);
+          data.map((item) => {
+            if (item.status === 'distribute') this.idCardPrint = true;
+          });
           this.displayedColumns = this.tableService.getDisplayedColumns(
             this.columns
           );
