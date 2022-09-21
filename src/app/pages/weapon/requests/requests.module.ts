@@ -19,7 +19,11 @@ import { TabbedPageComponent } from '../../page/tabbed-page/tabbed-page.componen
         component: TabbedPageComponent,
         data: requestPages,
         children: [
-          { path: '', redirectTo: 'request-for-weapon', pathMatch: 'full' },
+          {
+            path: '',
+            redirectTo: 'request-weapon-for-individual',
+            pathMatch: 'full',
+          },
           {
             path: 'request-for-weapon',
             loadChildren: () =>
@@ -29,6 +33,13 @@ import { TabbedPageComponent } from '../../page/tabbed-page/tabbed-page.componen
           },
           {
             path: 'request-for-return-weapon',
+            loadChildren: () =>
+              import('./return-weapon/return-weapon.module').then(
+                (m) => m.ReturnWeaponModule
+              ),
+          },
+          {
+            path: 'request-weapon-for-individual',
             loadChildren: () =>
               import('./return-weapon/return-weapon.module').then(
                 (m) => m.ReturnWeaponModule
