@@ -83,6 +83,7 @@
         "listofweaponsthathavebeenrequestedtobereturned": "ሊመለሱ የተጠየቁ እቃዎች ዝርዝር",
         "listofApprovedforDistribution": "ለስርጭት የተፈቀደላቸው የጦ መሰሪያ ዝርዝር",
         "tabs": {
+          "individual": "የጦር መሳሪያ ለግለሰብ ማስታጠቅ",
             "requestForWeapon": "የጦር መሳሪያ መጠየቅ",
             "requestForReturnWeapon": "የጦር መሳሪያን ለመመለስ መጠየቅ"
         },

@@ -8,7 +8,7 @@ const requestTabs = [
     title: 'requestForWeapon.tabs.requestForReturnWeapon',
     route: 'request-for-return-weapon',
     icon: 'fas fa-hand-holding-usd',
-  },
+  }
 ];
 
 export default requestTabs;

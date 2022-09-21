@@ -83,6 +83,7 @@
         "listofweaponsthathavebeenrequestedtobereturned": "list of weapons that have been requested to be returned",
         "listofApprovedforDistribution": "List of Approved for Distribution",
         "tabs": {
+          "individual": "Request Weapon for Individual",
             "requestForWeapon": "Request For Weapon",
             "requestForReturnWeapon": "Request For Return Weapon"
         },
