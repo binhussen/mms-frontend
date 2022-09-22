@@ -138,29 +138,29 @@ const customerForm: Form = {
       defaultValue: '',
       formArrayItems: [
         {
-          name: 'warantiyname',
+          name: 'name',
           type: 'text',
           placeholder: 'customer.customerWarranties.warrantierName',
           defaultValue: '',
-          size: 3,
+          size: 2,
           validations: [
             { type: 'required', value: true },
             { type: 'minLength', value: 3 },
           ],
         },
         {
-          name: 'warantiyAddress',
+          name: 'address',
           type: 'text',
           placeholder: 'customer.customerWarranties.warrantierAddress',
           defaultValue: '',
-          size: 3,
+          size: 2,
           validations: [
             { type: 'required', value: true },
             { type: 'minLength', value: 3 },
           ],
         },
         {
-          name: 'warantiyRegion',
+          name: 'region',
           type: 'text',
           placeholder: 'customer.customerWarranties.warrantierRegion',
           defaultValue: '',
@@ -171,7 +171,7 @@ const customerForm: Form = {
           ],
         },
         {
-          name: 'warantiySubCity',
+          name: 'subCity',
           type: 'text',
           placeholder: 'customer.customerWarranties.warrantierSubCity',
           defaultValue: '',
@@ -182,7 +182,7 @@ const customerForm: Form = {
           ],
         },
         {
-          name: 'warantiyWoreda',
+          name: 'woreda',
           type: 'text',
           placeholder: 'customer.customerWarranties.warrantierWoreda',
           defaultValue: '',
@@ -196,12 +196,11 @@ const customerForm: Form = {
     },
   ],
 };
-
 const warrantyForm: Form = {
   title: 'customer.customerWarranties.warrantierInformation',
   elements: [
     {
-      name: 'warantiyname',
+      name: 'name',
       type: 'text',
       placeholder: 'customer.customerWarranties.warrantierName',
       defaultValue: '',
@@ -212,7 +211,7 @@ const warrantyForm: Form = {
       ],
     },
     {
-      name: 'warantiyAddress',
+      name: 'address',
       type: 'text',
       placeholder: 'customer.customerWarranties.warrantierAddress',
       defaultValue: '',
@@ -223,7 +222,7 @@ const warrantyForm: Form = {
       ],
     },
     {
-      name: 'warantiyRegion',
+      name: 'region',
       type: 'text',
       placeholder: 'customer.customerWarranties.warrantierRegion',
       defaultValue: '',
@@ -234,7 +233,7 @@ const warrantyForm: Form = {
       ],
     },
     {
-      name: 'warantiySubCity',
+      name: 'subCity',
       type: 'text',
       placeholder: 'customer.customerWarranties.warrantierSubCity',
       defaultValue: '',
@@ -245,7 +244,7 @@ const warrantyForm: Form = {
       ],
     },
     {
-      name: 'warantiyWoreda',
+      name: 'woreda',
       type: 'text',
       placeholder: 'customer.customerWarranties.warrantierWoreda',
       defaultValue: '',
