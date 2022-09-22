@@ -236,7 +236,8 @@ export class TableComponent implements OnInit, AfterViewInit {
             excludedColumns ?? []
           );
           data.map((item) => {
-            if (item.status === 'distribute') this.idCardPrint = true;
+            if (item.status === 'distribute' && item.type == 'individual')
+              this.idCardPrint = true;
           });
           this.displayedColumns = this.tableService.getDisplayedColumns(
             this.columns

@@ -6,7 +6,7 @@ import requestWeaponForm from './request-weapon.form';
 const baseApiUrl = environment.baseApiUrl;
 const dataSourceUrl = `${baseApiUrl}requestheaders`;
 const actions: Array<Action> = [
-  { name: 'createNew.expand', type: 'expand', path: 'request-for-weapon' },
+  { name: 'createNew.expand', type: 'expand', path: 'request-for-weapon/mass' },
   { name: 'createNew.edit', type: 'edit' },
   {
     name: 'createNew.approve',
