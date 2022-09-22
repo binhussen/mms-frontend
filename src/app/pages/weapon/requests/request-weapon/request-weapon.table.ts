@@ -22,7 +22,7 @@ const actions: Array<Action> = [
   },
 ];
 
-const requestForWeaponTable: TableState = {
+const requestWeaponForMassTable: TableState = {
   id: 'request table',
   title: 'requestForWeapon.listofweaponsthathavebeenrequested',
   pageNumber: 0,
@@ -31,7 +31,24 @@ const requestForWeaponTable: TableState = {
   data: [],
   excludedColumns: ['id'],
   links: {
-    getPath: dataSourceUrl,
+    getPath: dataSourceUrl + '/type/mass',
+    createPath: `${dataSourceUrl}`,
+    updatePath: `${dataSourceUrl}/[id]`,
+    deletePath: `${dataSourceUrl}/[id]`,
+  },
+  actions: actions.slice(0, 2),
+};
+
+const requestWeaponForIndividualTable: TableState = {
+  id: 'request table',
+  title: 'requestForWeapon.listofweaponsthathavebeenrequested',
+  pageNumber: 0,
+  pageSize: 5,
+  totalItems: 0,
+  data: [],
+  excludedColumns: ['id'],
+  links: {
+    getPath: dataSourceUrl + '/type/individual',
     createPath: `${dataSourceUrl}`,
     updatePath: `${dataSourceUrl}/[id]`,
     deletePath: `${dataSourceUrl}/[id]`,
@@ -61,4 +78,8 @@ const requestItemsForWeaponTable: TableState = {
   },
 };
 
-export default { requestForWeaponTable, requestItemsForWeaponTable };
+export default {
+  requestWeaponForIndividualTable,
+  requestWeaponForMassTable,
+  requestItemsForWeaponTable,
+};

@@ -1,11 +1,15 @@
 import requestWeaponForm from './request-weapon.form';
 import requestForWeaponTable from './request-weapon.table';
 
-const requestWeaponPage = {
+export const requestIndividualWeaponPage = {
   title: 'Request For Weapon',
   type: 'default page',
   form: requestWeaponForm.requestForWeaponForm,
-  table: requestForWeaponTable.requestForWeaponTable,
+  table: requestForWeaponTable.requestWeaponForIndividualTable,
 };
-
-export default requestWeaponPage;
+export const requestMassWeaponPage = {
+  title: 'Request For Weapon',
+  type: 'default page',
+  form: requestWeaponForm.requestForWeaponForm,
+  table: requestForWeaponTable.requestWeaponForMassTable,
+};

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { of, Subscription } from 'rxjs';
 import { distinctUntilChanged, map, mergeMap, tap } from 'rxjs/operators';
@@ -21,7 +21,8 @@ export class PageComponent implements OnInit, OnDestroy {
     private store$: Store<AppState>,
     private titleService: Title,
     private httpClient: HttpClient,
-    private tableService: TableService
+    private tableService: TableService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -29,7 +30,7 @@ export class PageComponent implements OnInit, OnDestroy {
       .pipe(
         distinctUntilChanged(),
         mergeMap((data) => {
-          console.log(data);
+          // const currentUrl = this.router.url.split('/').slice(-1)[0];
 
           this.tableService
             .fetchData(0, 5, 'http://localhost:5000/api/hrs')

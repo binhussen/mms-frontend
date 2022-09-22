@@ -21,7 +21,7 @@ import { TabbedPageComponent } from '../../page/tabbed-page/tabbed-page.componen
         children: [
           {
             path: '',
-            redirectTo: 'request-weapon-for-individual',
+            redirectTo: 'request-for-weapon',
             pathMatch: 'full',
           },
           {
@@ -33,13 +33,6 @@ import { TabbedPageComponent } from '../../page/tabbed-page/tabbed-page.componen
           },
           {
             path: 'request-for-return-weapon',
-            loadChildren: () =>
-              import('./return-weapon/return-weapon.module').then(
-                (m) => m.ReturnWeaponModule
-              ),
-          },
-          {
-            path: 'request-weapon-for-individual',
             loadChildren: () =>
               import('./return-weapon/return-weapon.module').then(
                 (m) => m.ReturnWeaponModule

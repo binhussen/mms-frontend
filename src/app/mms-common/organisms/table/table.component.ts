@@ -77,8 +77,7 @@ export class TableComponent implements OnInit, AfterViewInit {
     private router: Router,
     private store$: Store<AppState>,
     public tableService: TableService,
-    private changeDetectorRefs: ChangeDetectorRef,
-    private sanckbar: MatSnackBar
+    private changeDetectorRefs: ChangeDetectorRef
   ) {}
 
   async ngOnInit() {
