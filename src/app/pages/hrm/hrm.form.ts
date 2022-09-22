@@ -15,7 +15,7 @@ const hrmForm: Form = {
       ],
     },
     {
-      name: 'name',
+      name: 'firstName',
       type: 'text',
       placeholder: 'First Name',
       defaultValue: '',
@@ -92,10 +92,7 @@ const hrmForm: Form = {
       placeholder: 'Rank',
       defaultValue: '',
       size: 2,
-      validations: [
-        { type: 'required', value: true },
-        { type: 'minLength', value: 3 },
-      ],
+      validations: [{ type: 'required', value: true }],
     },
     {
       name: 'reponsibilty',
