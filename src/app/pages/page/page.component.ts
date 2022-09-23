@@ -30,7 +30,10 @@ export class PageComponent implements OnInit, OnDestroy {
       .pipe(
         distinctUntilChanged(),
         mergeMap((data) => {
-          // const currentUrl = this.router.url.split('/').slice(-1)[0];
+          const currentUrl = this.router.url.split('/').slice(-1)[0];
+          if (currentUrl == 'mass') data.form.elements[0].defaultValue = 'mass';
+          else if (currentUrl == 'individual')
+            data.form.elements[0].defaultValue = 'individual';
 
           this.tableService
             .fetchData(0, 5, 'http://localhost:5000/api/hrs')
