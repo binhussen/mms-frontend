@@ -44,14 +44,26 @@ export class FormDialogComponent implements OnInit {
     this.row = row;
   }
   onSubmit(formData: any) {
-    const f = {
-      value: {
-        id: this.form.title,
-        data: formData,
-        submittedToUrl: this.dataSourceUrl,
-        action: this.actionType,
-      },
-    };
+    let f;
+    if (formData['roles']) {
+      f = {
+        value: {
+          id: this.form.title,
+          data: { ...formData, roles: [formData['roles']] },
+          submittedToUrl: this.dataSourceUrl,
+          action: this.actionType,
+        },
+      };
+    } else {
+      f = {
+        value: {
+          id: this.form.title,
+          data: formData,
+          submittedToUrl: this.dataSourceUrl,
+          action: this.actionType,
+        },
+      };
+    }
 
     if (this.actionType == 'create') {
       this.store$.dispatch(formActions.setSubmittingForm(f));
