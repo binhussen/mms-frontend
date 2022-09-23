@@ -110,7 +110,7 @@
                 !column.columnDef.includes('Id')
               "
               >{{
-                column.columnDef.toLowerCase().includes("date")
+                column.columnDef.toLowerCase().includes("date")||column.columnDef.toLowerCase().includes("time")
                   ? (column.cell(row) | date)
                   : column.cell(row)
               }}</span
