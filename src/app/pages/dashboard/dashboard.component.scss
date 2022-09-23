@@ -3,7 +3,18 @@
   top: 15px;
   left: 15px;
   right: 15px;
-  bottom: 15px;
+  //bottom: 15px;
+}
+
+.dashboard{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  height: 100%;
+}
+.bord{
+  grid-column-start: 1;
+  grid-column-end: 3;
 }
 
 .more-button {
