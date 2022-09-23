@@ -8,7 +8,8 @@ export interface Validation {
     | 'email'
     | 'phone'
     | 'file'
-    | 'fp';
+    | 'fp'
+    | 'pattern';
   value: any;
 }
 export interface FormElement {

@@ -19,7 +19,11 @@ import { TabbedPageComponent } from '../../page/tabbed-page/tabbed-page.componen
         component: TabbedPageComponent,
         data: requestPages,
         children: [
-          { path: '', redirectTo: 'request-for-weapon', pathMatch: 'full' },
+          {
+            path: '',
+            redirectTo: 'request-for-weapon',
+            pathMatch: 'full',
+          },
           {
             path: 'request-for-weapon',
             loadChildren: () =>

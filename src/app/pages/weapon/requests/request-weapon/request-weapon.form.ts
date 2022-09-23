@@ -3,12 +3,12 @@ import { Form, FormElement } from 'src/app/mms-common/models/form';
 const requestForWeaponForm: Form = {
   title: 'requestForWeapon.form.requestForWeapon',
   elements: [
-    //   {
-    //   name: 'requestStatus',
-    //   type: 'hidden',
-    //   placeholder: 'Request Status',
-    //   defaultValue: 'PENDING',
-    // },
+    {
+      name: 'type',
+      type: 'hidden',
+      placeholder: 'Request Type',
+      defaultValue: 'individual',
+    },
     {
       name: 'description',
       type: 'text',

@@ -27,6 +27,17 @@ const notifyItemForm: Form = {
       ],
     },
     {
+      name: 'model',
+      type: 'text',
+      placeholder: 'notifyItem.form.model',
+      defaultValue: '',
+      size: 4,
+      validations: [
+        { type: 'required', value: true },
+        { type: 'minLength', value: 3 },
+      ],
+    },
+    {
       name: 'quantity',
       type: 'number',
       placeholder: 'notifyItem.form.quantity',
@@ -80,6 +91,17 @@ const notifyForm: Form = {
           name: 'name',
           type: 'text',
           placeholder: 'notifyItem.form.weaponName',
+          defaultValue: '',
+          size: 4,
+          validations: [
+            { type: 'required', value: true },
+            { type: 'minLength', value: 3 },
+          ],
+        },
+        {
+          name: 'model',
+          type: 'text',
+          placeholder: 'notifyItem.form.model',
           defaultValue: '',
           size: 4,
           validations: [

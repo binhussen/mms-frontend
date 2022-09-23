@@ -24,18 +24,6 @@ const notifyTableState: TableState = {
     deletePath: `${dataSourceUrl}/[id]`,
   },
   actions,
-  // relations: [
-  //   {
-  //     type: 'notifyItems',
-  //     links: {
-  //       getPath: `${baseApiUrl}notifyheaders/[id]/notifyitems`,
-  //       createPath: `${baseApiUrl}notifyheaders/[id]/notifyitems`,
-  //       updatePath: `${baseApiUrl}notifyheaders/[id]/notifyitems/[id]`,
-  //       deletePath: `${baseApiUrl}notifyheaders/[id]/notifyitems/[id]`,
-  //     },
-  //     relationType: 'many',
-  //   },
-  // ],
 };
 
 // set this state to the store

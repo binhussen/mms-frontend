@@ -240,8 +240,11 @@ export class FormComponent implements OnInit, OnDestroy {
           case 'phone':
             temp = [...temp, Validators.pattern('[0][9][0-9]{8}')];
             break;
+          case 'pattern':
+            temp = [...temp, Validators.pattern(validation.value)];
+            break;
           case 'fp':
-            temp = [...temp, Validators.pattern('[0][0][0-9]{6}')];
+            // temp = [...temp, Validators.pattern('/^FP/i')];
             break;
         }
       }

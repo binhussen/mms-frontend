@@ -77,8 +77,7 @@ export class TableComponent implements OnInit, AfterViewInit {
     private router: Router,
     private store$: Store<AppState>,
     public tableService: TableService,
-    private changeDetectorRefs: ChangeDetectorRef,
-    private sanckbar: MatSnackBar
+    private changeDetectorRefs: ChangeDetectorRef
   ) {}
 
   async ngOnInit() {
@@ -124,6 +123,7 @@ export class TableComponent implements OnInit, AfterViewInit {
         );
         break;
       case 'expand':
+        console.log(`${this.router.url}/${row['id']}`);
         this.router.navigate([`${this.router.url}/${row['id']}`]);
         break;
       case 'edit':
@@ -140,26 +140,6 @@ export class TableComponent implements OnInit, AfterViewInit {
       case 'delete':
         // delete the row
         break;
-      // case 'approve':
-      //   // fetch data from the server using actionType.urlToPopulateForm by replacing [id] with the current row id
-      //   this.httpClient
-      //     .get(action?.urlToPopulateForm?.replace('[id]', row.id) ?? '')
-      //     .subscribe((r) => {
-      //       console.log(r);
-      //       this.store$.dispatch(
-      //         formActions.setUpdatingForm({
-      //           value: { ...r },
-      //         })
-      //       );
-      //       this.openDialog(
-      //         'Approve',
-      //         action.form ?? this.form,
-      //         action.submittedUrl ?? '',
-      //         action.type,
-      //         row
-      //       );
-      //     });
-      //   break;
       case 'approve':
         // approve
         this.openDialog(
@@ -219,9 +199,6 @@ export class TableComponent implements OnInit, AfterViewInit {
     );
     popupWin!.document.open();
     popupWin!.document.write(idCardDocument);
-    ///prev
-
-    // popupWin!.document.close();
   }
   ////////////////////////////////
 
@@ -237,7 +214,9 @@ export class TableComponent implements OnInit, AfterViewInit {
             excludedColumns ?? []
           );
           data.map((item) => {
-            if (item.status === 'distribute') this.idCardPrint = true;
+            const currentUrl = this.router.url.split('/')[5];
+            if (item.status === 'distribute' && currentUrl == 'individual')
+              this.idCardPrint = true;
           });
           this.displayedColumns = this.tableService.getDisplayedColumns(
             this.columns

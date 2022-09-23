@@ -3,8 +3,12 @@ const requestPages = {
   title: 'Requests',
   tabs: [
     {
+      title: 'requestForWeapon.tabs.individual',
+      route: 'request-for-weapon/individual',
+    },
+    {
       title: 'requestForWeapon.tabs.requestForWeapon',
-      route: 'request-for-weapon',
+      route: 'request-for-weapon/mass',
     },
     {
       title: 'requestForWeapon.tabs.requestForReturnWeapon',
