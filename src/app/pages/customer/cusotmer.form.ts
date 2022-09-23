@@ -23,11 +23,10 @@ const customerForm: Form = {
       ],
     },
     {
-      name: 'photo',
+      name: 'picture',
       type: 'file',
       placeholder: 'Profile Picture',
       defaultValue: '',
-      validations: [{ type: 'required', value: true }],
     },
     {
       name: 'region',
@@ -63,18 +62,6 @@ const customerForm: Form = {
       ],
     },
     {
-      name: 'sex',
-      type: 'select',
-      placeholder: 'customer.form.sex',
-      defaultValue: '',
-      size: 3,
-      options: [
-        { value: 'Male', label: 'Male' },
-        { value: 'Female', label: 'Female' },
-      ],
-      validations: [{ type: 'required', value: true }],
-    },
-    {
       name: 'phoneNumber',
       type: 'text',
       placeholder: 'customer.form.phoneNumber',
@@ -92,25 +79,6 @@ const customerForm: Form = {
       defaultValue: '',
       size: 3,
       validations: [{ type: 'required', value: true }],
-    },
-    {
-      name: 'birthDate',
-      type: 'date',
-      placeholder: 'customer.form.birthDate',
-      defaultValue: '',
-      size: 3,
-      validations: [{ type: 'required', value: true }],
-    },
-    {
-      name: 'occupation',
-      type: 'text',
-      placeholder: 'customer.form.occupation',
-      defaultValue: '',
-      size: 3,
-      validations: [
-        { type: 'required', value: true },
-        { type: 'minLength', value: 3 },
-      ],
     },
     {
       name: 'homeNumber',
