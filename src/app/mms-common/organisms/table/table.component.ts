@@ -123,6 +123,7 @@ export class TableComponent implements OnInit, AfterViewInit {
         );
         break;
       case 'expand':
+        console.log(`${this.router.url}/${row['id']}`);
         this.router.navigate([`${this.router.url}/${row['id']}`]);
         break;
       case 'edit':
@@ -236,7 +237,9 @@ export class TableComponent implements OnInit, AfterViewInit {
             excludedColumns ?? []
           );
           data.map((item) => {
-            if (item.status === 'distribute' && item.type == 'individual')
+            console.log(item);
+            const currentUrl = this.router.url.split('/')[5];
+            if (item.status === 'distribute' && currentUrl == 'individual')
               this.idCardPrint = true;
           });
           this.displayedColumns = this.tableService.getDisplayedColumns(
