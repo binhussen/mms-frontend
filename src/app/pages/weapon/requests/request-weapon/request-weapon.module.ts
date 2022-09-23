@@ -27,7 +27,12 @@ import approvePage from './approves.page';
       },
       { path: 'mass', component: PageComponent, data: requestMassWeaponPage },
       {
-        path: ':id',
+        path: 'individual/:id',
+        component: PageDetailComponent,
+        data: requestWeaponDetailPage,
+      },
+      {
+        path: 'mass/:id',
         component: PageDetailComponent,
         data: requestWeaponDetailPage,
       },
