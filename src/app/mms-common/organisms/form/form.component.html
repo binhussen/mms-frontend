@@ -22,8 +22,8 @@
                   <input matInput type="text"
                          [spellcheck]="false"
                          [formControlName]="element.name"
-                         placeholder="{{element.placeholder}}"
-                         value="{{element.defaultValue??''}}" />
+                         placeholder="{{element.placeholder | translate}}"
+                         value="{{element.defaultValue}}" />
                   <mat-error>
                     {{errors && errors[element.name]}}
                   </mat-error>
@@ -37,7 +37,7 @@
                   <input matInput type="password"
                          [spellcheck]="false"
                          [formControlName]="element.name"
-                         placeholder="{{element.placeholder}}"
+                         placeholder="{{element.placeholder | translate}}"
                          value="{{element.defaultValue}}" />
                   <mat-error>
                     {{errors && errors[element.name]}}
@@ -53,7 +53,7 @@
                   <input matInput type="number"
                          [spellcheck]="false"
                          [formControlName]="element.name"
-                         placeholder="{{element.placeholder}}"
+                         placeholder="{{element.placeholder | translate}}"
                          value="{{element.defaultValue}}" />
                   <mat-error>
                     {{errors && errors[element.name]}}
@@ -69,7 +69,7 @@
                   <input matInput type="text"
                          [spellcheck]="false"
                          [formControlName]="element.name"
-                         placeholder="{{element.placeholder}}"
+                         placeholder="{{element.placeholder | translate}}"
                          value="{{element.defaultValue}}" />
                   <mat-error>
                     {{errors && errors[element.name]}}
@@ -99,7 +99,7 @@
                 <mat-form-field [appearance]="'outline'">
                   <mat-label>{{element.placeholder | translate}}</mat-label>
                   <input matInput readonly
-                         [matDatepicker]="picker" [placeholder]="element.placeholder"
+                         [matDatepicker]="picker" [placeholder]="element.placeholder | translate"
                          [formControlName]="element.name"
                          (dateChange)="dateChanged($event, element.name)">
                   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -133,7 +133,7 @@
                 <mat-form-field class="hidden-input">
                   <input matInput hidden [formControlName]="element.name" />
                 </mat-form-field>
-                <app-file-input (onUploadingFinish)="setFileControl($event, element.name)" [title]="element.placeholder"></app-file-input>
+                <app-file-input (onUploadingFinish)="setFileControl($event, element.name)" [title]="element.placeholder | translate"></app-file-input>
               </ng-container>
 
             </div>
@@ -168,7 +168,7 @@
             <input matInput type="text"
                    [spellcheck]="false"
                    [formControlName]="element.name"
-                   placeholder="{{element.placeholder}}"
+                   placeholder="{{element.placeholder | translate}}"
                    value="{{element.defaultValue}}" />
             <mat-error>
               {{errors && errors[element.name]}}
@@ -183,7 +183,7 @@
             <input matInput type="password"
                    [spellcheck]="false"
                    [formControlName]="element.name"
-                   placeholder="{{element.placeholder}}"
+                   placeholder="{{element.placeholder | translate}}"
                    value="{{element.defaultValue}}" />
             <mat-error>
               {{errors && errors[element.name]}}
@@ -199,7 +199,7 @@
             <input matInput type="number"
                    [spellcheck]="false"
                    [formControlName]="element.name"
-                   placeholder="{{element.placeholder}}"
+                   placeholder="{{element.placeholder | translate}}"
                    value="{{element.defaultValue}}" />
             <mat-error>
               {{errors && errors[element.name]}}
@@ -215,7 +215,7 @@
             <input matInput type="text"
                    [spellcheck]="false"
                    [formControlName]="element.name"
-                   placeholder="{{element.placeholder}}"
+                   placeholder="{{element.placeholder | translate}}"
                    value="{{element.defaultValue}}" />
             <mat-error>
               {{errors && errors[element.name]}}
@@ -245,7 +245,7 @@
           <mat-form-field [appearance]="'outline'">
             <mat-label>{{element.placeholder | translate}}</mat-label>
             <input matInput readonly
-                   [matDatepicker]="picker" [placeholder]="element.placeholder"
+                   [matDatepicker]="picker" [placeholder]="element.placeholder | translate"
                    [formControlName]="element.name"
                    (dateChange)="dateChanged($event, element.name)">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
