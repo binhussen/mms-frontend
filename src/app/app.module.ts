@@ -23,6 +23,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TokenInterceptor } from './Auths/interceptor/token.interceptor';
 import { AuthEffect } from './store/effects/auth.effect';
+import { AuthModule } from './Auths/auth.module';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -44,6 +45,7 @@ export function createTranslateLoader(http: HttpClient) {
       defaultLanguage: 'am-ET',
     }),
     AppRoutingModule,
+    AuthModule,
     StoreModule.forRoot(reducers, {
       metaReducers,
     }),
