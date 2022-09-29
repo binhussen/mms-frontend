@@ -74,7 +74,7 @@ export class AuthenticationService {
       .pipe()
       .subscribe((f) => {
         if (f.action === 'login' && f.status === 'SUCCESS') {
-          const userName = f.response.wellCome.name;
+          userName = f.response.wellCome.username;
         }
       });
     return userName;
@@ -102,7 +102,7 @@ export class AuthenticationService {
       .pipe()
       .subscribe((f) => {
         if (f.action === 'login' && f.status === 'SUCCESS') {
-          const role = f.response.wellCome.name;
+          role = f.response.wellCome.role;
         }
       });
     return role;
