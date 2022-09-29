@@ -1,16 +1,9 @@
 import { ErrorHandler, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { GlobalErrorHandler } from './errors/global-error.handler';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { AuthorizeRoleComponent } from './authorize-role/authorize-role.component';
 
 @NgModule({
-  declarations: [],
-  imports: [CommonModule, MatSnackBarModule],
-  // providers: [
-  //   {
-  //     provide: ErrorHandler,
-  //     useClass: GlobalErrorHandler,
-  //   },
-  // ]
+  declarations: [AuthorizeRoleComponent],
 })
-export class CoreModule {}
+export class AuthModule {}

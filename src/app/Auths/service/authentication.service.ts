@@ -13,11 +13,8 @@ import { authenticationResponse, userCredentials } from '../model/user.model';
   providedIn: 'root',
 })
 export class AuthenticationService {
-  private baseApiUrl = environment.baseApiUrl;
-
   private readonly tokenKey = 'mmsToken';
-  private readonly roleField = 'role';
-  private readonly userName = 'name';
+
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -32,6 +29,8 @@ export class AuthenticationService {
       .subscribe((f) => {
         if (f.action === 'login' && f.status === 'SUCCESS') {
           expirationDate = new Date(f.response.wellCome.expiration);
+          const role = f.response.wellCome.role;
+          const userName = f.response.wellCome.name;
         } else {
           token = JSON.parse(localStorage.getItem(this.tokenKey) ?? '');
           expirationDate = new Date(token.expiration!);
@@ -58,22 +57,6 @@ export class AuthenticationService {
     return true;
   }
 
-  getFieldFromJWT(field: string): string {
-    const token = localStorage.getItem(this.tokenKey);
-    if (!token) {
-      return 'invalid token';
-    }
-    const dataToken = JSON.parse(atob(token.split('.')[1]));
-    const role = 'http://schemas.microsoft.com/ws/2008/06/identity/claims/';
-    const name = 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/';
-    if (field == 'role') {
-      return dataToken[role + field];
-    } else if (field == 'name') {
-      return dataToken[name + field];
-    }
-    return token;
-  }
-
   logout() {
     authAction.authFailure({
       value: {
@@ -85,7 +68,16 @@ export class AuthenticationService {
   }
 
   getUserName(): string {
-    return this.getFieldFromJWT(this.userName);
+    let userName = 'Not Found';
+    this.store$
+      .select((state) => state.auth)
+      .pipe()
+      .subscribe((f) => {
+        if (f.action === 'login' && f.status === 'SUCCESS') {
+          const userName = f.response.wellCome.name;
+        }
+      });
+    return userName;
   }
 
   login(data: userCredentials, url: string): Observable<any> {
@@ -101,5 +93,18 @@ export class AuthenticationService {
 
   getToken() {
     return localStorage.getItem(this.tokenKey);
+  }
+
+  getRole(): string {
+    let role = 'Not Found';
+    this.store$
+      .select((state) => state.auth)
+      .pipe()
+      .subscribe((f) => {
+        if (f.action === 'login' && f.status === 'SUCCESS') {
+          const role = f.response.wellCome.name;
+        }
+      });
+    return role;
   }
 }
