@@ -5,5 +5,6 @@ import { AuthorizeRoleComponent } from './authorize-role/authorize-role.componen
 
 @NgModule({
   declarations: [AuthorizeRoleComponent],
+  exports: [AuthorizeRoleComponent],
 })
 export class AuthModule {}

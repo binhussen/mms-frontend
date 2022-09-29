@@ -47,6 +47,7 @@ import { TableService } from './organisms/table/table.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { SideNavHeaderComponent } from './molecules/side-nav-header/side-nav-header.component';
 import { MatSnackBarConfig, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
+import {AuthModule} from "../Auths/auth.module";
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -71,7 +72,7 @@ const matSnackbarDefaultConfig: MatSnackBarConfig = {
     FileInputComponent,
     DndDirective,
     BasicComponent,
-    SideNavHeaderComponent
+    SideNavHeaderComponent,
   ],
   imports: [
     CommonModule,
@@ -108,6 +109,7 @@ const matSnackbarDefaultConfig: MatSnackBarConfig = {
     TranslateModule,
     MatFormFieldModule,
     MatInputModule,
+    AuthModule,
   ],
   providers: [
     {
@@ -117,7 +119,7 @@ const matSnackbarDefaultConfig: MatSnackBarConfig = {
     {
       provide: MAT_SNACK_BAR_DEFAULT_OPTIONS,
       useValue: matSnackbarDefaultConfig,
-    }
+    },
   ],
   exports: [
     LayoutComponent,
