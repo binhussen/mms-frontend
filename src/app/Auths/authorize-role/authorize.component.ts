@@ -2,11 +2,11 @@ import { Component, Input, OnInit } from '@angular/core';
 import { AuthenticationService } from '../service/authentication.service';
 
 @Component({
-  selector: 'app-authorize-role',
-  templateUrl: './authorize-role.component.html',
-  styleUrls: ['./authorize-role.component.scss'],
+  selector: 'app-authorize',
+  templateUrl: './authorize.component.html',
+  styleUrls: ['./authorize.component.scss'],
 })
-export class AuthorizeRoleComponent implements OnInit {
+export class AuthorizeComponent implements OnInit {
   now: Date = new Date();
   constructor(private authenticationService: AuthenticationService) {}
 
