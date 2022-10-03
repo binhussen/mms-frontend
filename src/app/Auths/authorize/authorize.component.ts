@@ -7,7 +7,6 @@ import { AuthenticationService } from '../service/authentication.service';
   styleUrls: ['./authorize.component.scss'],
 })
 export class AuthorizeComponent implements OnInit {
-  now: Date = new Date();
   constructor(private authenticationService: AuthenticationService) {}
 
   ngOnInit(): void {}
@@ -16,7 +15,7 @@ export class AuthorizeComponent implements OnInit {
 
   public isAuthorized() {
     if (this.role) {
-      console.log(this.authenticationService.getRole(), this.role);
+      console.log(this.authenticationService.getRole() === this.role);
       return this.authenticationService.getRole() === this.role;
     } else {
       return this.authenticationService.isAuthenticated();
