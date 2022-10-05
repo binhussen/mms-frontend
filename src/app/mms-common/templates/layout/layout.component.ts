@@ -43,7 +43,6 @@ export class LayoutComponent implements OnInit {
   }
 
   changeLanguage(lang: string) {
-    console.log(lang);
     this.translateService.use(lang);
   }
 }

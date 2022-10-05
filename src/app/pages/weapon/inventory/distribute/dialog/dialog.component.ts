@@ -87,8 +87,7 @@ export class DialogComponent implements OnInit, AfterViewInit {
     @Inject(MAT_DIALOG_DATA) public inputData: any,
     private dialogRef: MatDialogRef<DialogComponent>,
     private http: HttpClient
-  ) {
-    console.log('inputData', inputData);
+  ) {;
     this.data = inputData;
   }
   ngAfterViewInit(): void {
@@ -107,22 +106,15 @@ export class DialogComponent implements OnInit, AfterViewInit {
     this.logValues('OnInit');
     this.step1 = new FormGroup({});
     this.step2 = new FormGroup({});
-    console.log(this.userRegistrationFormComponent);
   }
   onSubmit(formData: any, step: 'step1' | 'step2') {
-    console.log(formData);
     this.steps[step].submitFunction(formData).subscribe((response) => {
-      console.log(response);
       this.steps[step].response = response;
       this.steps[step].isCompleted = true;
       this.stepper.next();
     });
-    //  console.log(formData, userRegistration.valid, stepper.next());
   }
   logValues(eventType: string) {
-    console.log(
-      `[${eventType}]\n userRegistration: ${this.userRegistrationFormComponent}\n`
-    );
   }
 
   submitUserRegistrationForm(value: any) {
@@ -173,7 +165,6 @@ export class DialogComponent implements OnInit, AfterViewInit {
     ).pipe(
       concatAll(),
       catchError((error) => {
-        console.log(error);
         return error;
       })
     );

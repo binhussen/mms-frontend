@@ -14,6 +14,8 @@ import { authenticationResponse, userCredentials } from '../model/user.model';
 })
 export class AuthenticationService {
   private readonly tokenKey = 'mmsToken';
+  private role = 'Not Found';
+  private userName = 'Not Found';
 
   constructor(
     private http: HttpClient,
@@ -29,8 +31,8 @@ export class AuthenticationService {
       .subscribe((f) => {
         if (f.action === 'login' && f.status === 'SUCCESS') {
           expirationDate = new Date(f.response.wellCome.expiration);
-          const role = f.response.wellCome.role;
-          const userName = f.response.wellCome.name;
+          this.role = f.response.wellCome.role;
+          this.userName = f.response.wellCome.name;
         } else {
           token = JSON.parse(localStorage.getItem(this.tokenKey) ?? '');
           expirationDate = new Date(token.expiration!);
@@ -68,16 +70,8 @@ export class AuthenticationService {
   }
 
   getUserName(): string {
-    let userName = 'Not Found';
-    this.store$
-      .select((state) => state.auth)
-      .pipe()
-      .subscribe((f) => {
-        if (f.action === 'login' && f.status === 'SUCCESS') {
-          userName = f.response.wellCome.username;
-        }
-      });
-    return userName;
+    this.isAuthenticated();
+    return this.userName;
   }
 
   login(data: userCredentials, url: string): Observable<any> {
@@ -96,15 +90,7 @@ export class AuthenticationService {
   }
 
   getRole(): string {
-    let role = 'Not Found';
-    this.store$
-      .select((state) => state.auth)
-      .pipe()
-      .subscribe((f) => {
-        if (f.action === 'login' && f.status === 'SUCCESS') {
-          role = f.response.wellCome.role;
-        }
-      });
-    return role;
+    this.isAuthenticated();
+    return this.role;
   }
 }

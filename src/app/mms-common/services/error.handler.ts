@@ -181,7 +181,6 @@ export class ErrorHandler {
       this.message = 'There is an account with that email';
     } else {
       this.message = '';
-      console.log(errors);
     }
   }
 

@@ -69,7 +69,6 @@ export class CrudHttpService extends BaseService<any> {
               form.childOf
             );
             return this.createResource(form.data, single.submittedToUrl).pipe(
-              tap((response) => console.log(response)),
               tap(async (response) => {
                 if (form.submittedToUrl?.includes('requestWeaponApprovals')) {
                   await this.httpClient
@@ -135,12 +134,6 @@ export class CrudHttpService extends BaseService<any> {
   }
 
   createResource(data: any, url: string): Observable<any> {
-    // if (Object.keys(data).length <= 1) {
-    //   console.log(data);
-    //   return new Observable((observer) => {
-    //     observer.next(null);
-    //   });
-    // }
     return this.httpClient.post(`${url}`, data, { headers: this.headers });
   }
 

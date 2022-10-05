@@ -161,7 +161,6 @@ export class FormComponent implements OnInit, OnDestroy {
   }
 
   someInformalShit(submittedToUrl: string, elementName: string) {
-    console.log(submittedToUrl);
     if (submittedToUrl.includes('requestWeaponApprovals')) {
       return 'requestWeaponItems';
     }
@@ -206,7 +205,6 @@ export class FormComponent implements OnInit, OnDestroy {
             tap((value) => {
               // this.data[elementPath] = value;
               this.data[formElement.name] = value;
-              console.log(this.data);
             })
           )
         : of(formElement.options ?? []);

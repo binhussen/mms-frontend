@@ -13,7 +13,7 @@
       <h1>{{ tableState?.title! | translate }}</h1>
     </div>
     <div>
-      <app-authorize-role role="Admin">
+
       <button
         class="print"
         mat-button
@@ -23,7 +23,6 @@
         <mat-icon>print</mat-icon>
         {{ "formAction.report" | translate }}
       </button>
-      </app-authorize-role>
       <button
         *ngIf="idCardPrint"
         class="print"

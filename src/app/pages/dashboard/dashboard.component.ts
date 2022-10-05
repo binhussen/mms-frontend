@@ -176,7 +176,6 @@ export class DashboardComponent {
     this.dashboardService
       .findAll('${baseApiUrl}')
       .subscribe((val) => (this.numberOfRequests = val.length));
-    console.log(this.numberOfRequests);
 
     // number of damages
     this.dashboardService

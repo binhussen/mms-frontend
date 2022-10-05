@@ -38,14 +38,12 @@ export class DistributeFormComponent implements OnInit {
     private dialogRef: MatDialogRef<DistributeFormComponent>,
     private http: HttpClient
   ) {
-    console.log('inputData', inputData);
     this.data = inputData;
   }
 
   ngOnInit(): void {}
 
   onSubmit(formData: any) {
-    console.log(formData);
   }
 
   submitDistributeForm(value: any) {}

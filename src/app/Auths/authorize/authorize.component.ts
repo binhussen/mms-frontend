@@ -15,7 +15,6 @@ export class AuthorizeComponent implements OnInit {
 
   public isAuthorized() {
     if (this.role) {
-      console.log(this.authenticationService.getRole() === this.role);
       return this.authenticationService.getRole() === this.role;
     } else {
       return this.authenticationService.isAuthenticated();

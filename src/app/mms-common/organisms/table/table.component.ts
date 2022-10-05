@@ -123,7 +123,6 @@ export class TableComponent implements OnInit, AfterViewInit {
         );
         break;
       case 'expand':
-        console.log(`${this.router.url}/${row['id']}`);
         this.router.navigate([`${this.router.url}/${row['id']}`]);
         break;
       case 'edit':

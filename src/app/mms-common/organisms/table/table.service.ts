@@ -63,7 +63,6 @@ export class TableService {
       params,
     });
     httpResponse.subscribe((response) => {
-      console.log(response);
     });
 
     return httpResponse.pipe(
