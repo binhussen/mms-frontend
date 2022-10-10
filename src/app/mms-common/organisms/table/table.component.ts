@@ -65,9 +65,8 @@ export class TableComponent implements OnInit, AfterViewInit {
   loading = false;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @Input() form!: Form;
-  pageSize = 5;
   dataSource = new MatTableDataSource<any>(this.data);
-
+  pageSize!: number;
   actionTitle = 'Create';
 
   tableState$!: Observable<TableState>;
@@ -204,8 +203,9 @@ export class TableComponent implements OnInit, AfterViewInit {
   initTable(state$: Observable<TableState>, currentSize?: number) {
     return this.store$.select(tableSelectors.getTableState).pipe(
       //  filter((state) => Boolean(state?.data && state?.data?.length)),
-      tap(({ data, totalItems, excludedColumns, links }) => {
+      tap(({ data, pageSize, totalItems, excludedColumns, links }) => {
         this.links = links;
+        this.pageSize = pageSize;
         if (!currentSize && data) {
           this.data = [...data];
           this.columns = this.tableService.getColumns(
@@ -231,7 +231,7 @@ export class TableComponent implements OnInit, AfterViewInit {
         temp.length = totalItems;
         this.data = temp;
 
-        this.dataSource = new MatTableDataSource<any>(data);
+        this.dataSource = new MatTableDataSource<any>(this.data);
         this.changeDetectorRefs.detectChanges();
         this.dataSource._updateChangeSubscription();
         this.dataSource.paginator = this.paginator;
@@ -244,6 +244,7 @@ export class TableComponent implements OnInit, AfterViewInit {
     const _limit = value.pageSize;
     let previousSize = _page * _limit;
 
+    console.log('previousSize', previousSize);
     // update page number and page size
     this.store$.dispatch(
       tableActions.updatePageNumber({

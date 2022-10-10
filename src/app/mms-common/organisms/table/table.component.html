@@ -77,7 +77,7 @@
     ></mat-progress-spinner>
   </div>
 
-  <ng-container *ngIf="tableState.data?.length; else noRecordTemplate">
+  <ng-container *ngIf="pageSize; else noRecordTemplate">
     <mat-table
       *ngIf="!loading"
       #table
