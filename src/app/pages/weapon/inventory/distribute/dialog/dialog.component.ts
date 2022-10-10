@@ -7,7 +7,7 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 import { MatButton } from '@angular/material/button';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatStepper } from '@angular/material/stepper';
@@ -38,8 +38,8 @@ export class DialogComponent implements OnInit, AfterViewInit {
 
   completed = false;
 
-  step1!: FormGroup;
-  step2!: FormGroup;
+  step1!: UntypedFormGroup;
+  step2!: UntypedFormGroup;
 
   isStep1Completed: boolean = false;
   isStep2Completed: boolean = false;
@@ -104,8 +104,8 @@ export class DialogComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.logValues('OnInit');
-    this.step1 = new FormGroup({});
-    this.step2 = new FormGroup({});
+    this.step1 = new UntypedFormGroup({});
+    this.step2 = new UntypedFormGroup({});
   }
   onSubmit(formData: any, step: 'step1' | 'step2') {
     this.steps[step].submitFunction(formData).subscribe((response) => {
@@ -175,7 +175,7 @@ export class DialogComponent implements OnInit, AfterViewInit {
       requestStatus: status,
     });
   }
-  isCompleted(form: FormGroup) {
+  isCompleted(form: UntypedFormGroup) {
     return form ? form.valid : false;
   }
 }

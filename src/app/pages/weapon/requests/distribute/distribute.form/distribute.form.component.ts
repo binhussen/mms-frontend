@@ -7,7 +7,7 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 import { MatButton } from '@angular/material/button';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatStepper } from '@angular/material/stepper';
@@ -48,7 +48,7 @@ export class DistributeFormComponent implements OnInit {
 
   submitDistributeForm(value: any) {}
 
-  isCompleted(form: FormGroup) {
+  isCompleted(form: UntypedFormGroup) {
     return form ? form.valid : false;
   }
 }

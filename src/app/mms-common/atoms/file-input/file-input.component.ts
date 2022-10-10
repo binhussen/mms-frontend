@@ -22,7 +22,7 @@ import {
 import {
   AbstractControl,
   ControlValueAccessor,
-  FormControl,
+  UntypedFormControl,
   FormGroupDirective,
   NgControl,
   NgForm,
@@ -75,7 +75,7 @@ interface UploadList {
 export class FileInputComponent {
   @Input()
   title!: string;
-  display: FormControl = new FormControl('', Validators.required);
+  display: UntypedFormControl = new UntypedFormControl('', Validators.required);
   file_store!: FileList;
   file_list: Array<UploadList> = [];
   uploadSubs: Array<Subscription> = [];
