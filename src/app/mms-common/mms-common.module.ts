@@ -13,7 +13,12 @@ import { LayoutComponent } from './templates/layout/layout.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { MatCardContent, MatCardHeader, MatCardModule, MatCardSubtitle } from '@angular/material/card';
+import {
+  MatCardContent,
+  MatCardHeader,
+  MatCardModule,
+  MatCardSubtitle,
+} from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -46,8 +51,10 @@ import { RouterModule } from '@angular/router';
 import { TableService } from './organisms/table/table.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { SideNavHeaderComponent } from './molecules/side-nav-header/side-nav-header.component';
-import { MatSnackBarConfig, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
-import {AuthModule} from "../Auths/auth.module";
+import {
+  MatSnackBarConfig,
+  MAT_SNACK_BAR_DEFAULT_OPTIONS,
+} from '@angular/material/snack-bar';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -109,7 +116,6 @@ const matSnackbarDefaultConfig: MatSnackBarConfig = {
     TranslateModule,
     MatFormFieldModule,
     MatInputModule,
-    AuthModule,
   ],
   providers: [
     {

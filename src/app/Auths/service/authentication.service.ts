@@ -24,38 +24,36 @@ export class AuthenticationService {
   ) {}
 
   isAuthenticated(): boolean {
-    let expirationDate, token;
     this.store$
       .select((state) => state.auth)
       .pipe()
       .subscribe((f) => {
-        if (f.action === 'login' && f.status === 'SUCCESS') {
-          expirationDate = new Date(f.response.wellCome.expiration);
+        if (f.status === 'SUCCESS') {
+          const expirationDate = new Date(f.response.wellCome.expiration);
           this.role = f.response.wellCome.role;
           this.userName = f.response.wellCome.name;
-        } else {
-          token = JSON.parse(localStorage.getItem(this.tokenKey) ?? '');
-          expirationDate = new Date(token.expiration!);
+          if (!expirationDate) {
+            authAction.authFailure({
+              value: {
+                response: {
+                  error: { status: 401, title: 'Your are not Authorized' },
+                },
+              },
+            });
+            this.returnFalse();
+          } else if (expirationDate <= new Date()) {
+            this.logout();
+            this.returnFalse();
+          }
         }
       });
-    if (!expirationDate) {
-      authAction.authFailure({
+    this.store$.dispatch(
+      authAction.authSuccess({
         value: {
-          response: {
-            error: { status: 401, title: 'Your are not Authorized' },
-          },
+          wellCome: JSON.parse(localStorage.getItem(this.tokenKey) ?? ''),
         },
-      });
-      return false;
-    } else if (expirationDate <= new Date()) {
-      this.logout();
-      return false;
-    } else if (expirationDate > new Date()) {
-      this.store$.dispatch(
-        authAction.authSuccess({ value: { wellCome: token } })
-      );
-      return true;
-    }
+      })
+    );
     return true;
   }
 
@@ -67,6 +65,10 @@ export class AuthenticationService {
     });
     localStorage.removeItem(this.tokenKey);
     this.router.navigateByUrl('/login');
+  }
+
+  returnFalse() {
+    return false;
   }
 
   getUserName(): string {

@@ -26,19 +26,17 @@ export class UserMenuComponent implements OnInit {
       this.isOpen = false;
     }
   }
-  role!: string;
+
+  admin!: boolean;
   constructor(
     private elementRef: ElementRef,
     private authenticationService: AuthenticationService
-  ) {
-    //this.authenticationService.logout();
-  }
+  ) {}
   ngOnInit(): void {
-    this.role = this.authenticationService.getRole();
-    console.log('role', this.role);
-    setTimeout(() => {
-      this.role = this.authenticationService.getRole();
-      console.log('role', this.role);
-    }, 2000);
+    this.isAuthorized('Admin');
+  }
+
+  public isAuthorized(role: string) {
+    this.admin = this.authenticationService.getRole() === role;
   }
 }

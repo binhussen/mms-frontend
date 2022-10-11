@@ -244,8 +244,6 @@ export class TableComponent implements OnInit, AfterViewInit {
     const _limit = value.pageSize;
     let previousSize = _page * _limit;
 
-    console.log('previousSize', previousSize);
-    // update page number and page size
     this.store$.dispatch(
       tableActions.updatePageNumber({
         value: {
