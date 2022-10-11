@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatDrawerMode } from '@angular/material/sidenav/drawer';
-import { MediaChange, MediaObserver } from '@angular/flex-layout';
+import { MediaObserver } from '@angular/flex-layout';
+import { MatDrawerMode } from '@angular/material/sidenav';
 import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-layout',
