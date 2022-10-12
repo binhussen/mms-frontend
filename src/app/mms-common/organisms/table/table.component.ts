@@ -68,6 +68,7 @@ export class TableComponent implements OnInit, AfterViewInit {
   dataSource = new MatTableDataSource<any>(this.data);
   pageSize!: number;
   actionTitle = 'Create';
+  previousSize = 0;
 
   tableState$!: Observable<TableState>;
   links!: any;
@@ -242,7 +243,7 @@ export class TableComponent implements OnInit, AfterViewInit {
   async pageChange(value: any) {
     const _page = value.pageIndex;
     const _limit = value.pageSize;
-    let previousSize = _page * _limit;
+    this.previousSize = _page * _limit;
 
     this.store$.dispatch(
       tableActions.updatePageNumber({
@@ -253,8 +254,7 @@ export class TableComponent implements OnInit, AfterViewInit {
         },
       })
     );
-
-    await this.initTable(this.tableState$, previousSize).toPromise();
+    await this.initTable(this.tableState$, this.previousSize).toPromise();
   }
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;

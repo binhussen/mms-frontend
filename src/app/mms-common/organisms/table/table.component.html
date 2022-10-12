@@ -13,7 +13,6 @@
       <h1>{{ tableState?.title! | translate }}</h1>
     </div>
     <div>
-
       <button
         class="print"
         mat-button
@@ -111,7 +110,8 @@
                 !column.columnDef.includes('Id')
               "
               >{{
-                column.columnDef.toLowerCase().includes("date")||column.columnDef.toLowerCase().includes("time")
+                column.columnDef.toLowerCase().includes("date") ||
+                column.columnDef.toLowerCase().includes("time")
                   ? (column.cell(row) | date)
                   : column.cell(row)
               }}</span
@@ -119,7 +119,7 @@
           </ng-container>
 
           <ng-container *ngIf="!column.cell(row) && column.columnDef == 'No'">
-            {{ i + 1 }}
+            {{ i + previousSize + 1 }}
           </ng-container>
           <div class="hidedata">
             <ng-container
@@ -155,7 +155,7 @@
     </mat-table>
     <div class="hidedata">
       <mat-paginator
-        [pageSizeOptions]="[5, 10, 20]"
+        [pageSizeOptions]="[2, 5, 10, 20]"
         (page)="pageChange($event)"
         showFirstLastButtons
         aria-label="Select page"
