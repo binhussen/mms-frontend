@@ -1,16 +1,18 @@
 <ng-container *ngIf="(activatedRoute.data | async) as data">
     <nav mat-tab-nav-bar  backgroundColor="primary" class="mat-elevation-z1">
+      <div *ngFor="let tab of data.tabs">
         <a
         mat-tab-link
-        *ngFor="let tab of data.tabs"
         routerLink="{{ tab.route }}"
         routerLinkActive
         #rla="routerLinkActive"
         [active]="rla.isActive"
+        *ngIf="tab.title!='inventory.tabs.insertWeapon'||
+               tab.title==='inventory.tabs.insertWeapon'&& role==='StoreMan'"
       >
         <span>{{ tab.title | translate | uppercase }}</span>
-      </a>
+      </a></div>
     </nav>
-    
+
     <router-outlet></router-outlet>
 </ng-container>

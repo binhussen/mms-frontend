@@ -26,7 +26,6 @@ export class PageDetailComponent implements OnInit, OnDestroy {
       .pipe(
         distinctUntilChanged(),
         tap(({ table, title }) => {
-          console.log(table);
           this.titleService.setTitle(title ?? 'MMS - MMS');
 
           if (table.links && table.childOf) {
