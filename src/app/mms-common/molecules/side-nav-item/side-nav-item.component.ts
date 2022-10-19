@@ -10,8 +10,23 @@ import { AuthenticationService } from '../../../Auths/service/authentication.ser
 export class SideNavItemComponent implements OnInit {
   @Input() menu!: Menu;
   @Input() secondaryMenu = false;
-  constructor(private authenticationService: AuthenticationService) {
+  constructor(private auth: AuthenticationService) {}
+
+  admin!: boolean;
+  storeMan!: boolean;
+  request!: boolean;
+  approve!: boolean;
+  view!: boolean;
+
+  ngOnInit(): void {
+    this.isAuthorized();
   }
 
-  ngOnInit(): void {}
+  public isAuthorized() {
+    this.admin = this.auth.getRole() === 'Admin';
+    this.storeMan = this.auth.getRole() === 'StoreMan';
+    this.request = this.auth.getRole() === 'Request';
+    this.approve = this.auth.getRole() === 'Approve';
+    this.view = this.auth.getRole() === 'View';
+  }
 }
