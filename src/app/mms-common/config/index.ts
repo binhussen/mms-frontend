@@ -15,7 +15,7 @@ export const menus: Array<Menu> = [
     trans: 'menus.weapon',
     sub: [
       {
-        name: 'Notify Weapon',
+        name: 'Notify',
         icon: '',
         link: 'weapon/notifies',
         open: false,
@@ -36,7 +36,7 @@ export const menus: Array<Menu> = [
         trans: 'menus.request',
       },
       {
-        name: 'Report Damages',
+        name: 'Damage',
         icon: '',
         link: 'weapon/damages',
         open: false,
@@ -45,21 +45,21 @@ export const menus: Array<Menu> = [
     ],
   },
   {
-    name: 'Hrm',
+    name: 'Hr',
     icon: 'wc',
     link: 'hrms',
     open: false,
     trans: 'menus.hrm',
   },
   {
-    name: 'customers',
+    name: 'Customer',
     icon: 'people',
     link: 'customers',
     open: false,
     trans: 'menus.customer',
   },
   {
-    name: 'User Management',
+    name: 'UserManagement',
     icon: 'person',
     link: 'user-menu/create-user-account',
     open: false,
