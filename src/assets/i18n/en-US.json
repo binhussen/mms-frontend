@@ -63,7 +63,8 @@
         "form": {
             "weaponType": "Weapon Type",
             "weaponName": "Weapon Name",
-            "quantity": "Quantity"
+            "quantity": "Quantity",
+            "model":"Model"
         }
     },
     "notifyWeapon": {
@@ -89,6 +90,7 @@
         },
         "form": {
             "requestForWeapon": "Request For Weapon",
+            "whoIsArmed":"Who is Armed",
             "type": "Type",
             "name": "Name",
             "requestStatus": "Request Status",
@@ -196,9 +198,14 @@
     },
     "customer": {
         "listofOrganizationscustomer": "List of Organizations Customer",
+        "listOfHrm": "List Of HRM",
         "form": {
             "registerWarranty": "Register Customer",
+            "registerHrm": "Register employee to HRM ",
+            "fpNumber":"FP Number",
             "name": "Name",
+            "middleName": "Middle Name",
+            "lastName":"Last Name",
             "region": "Region",
             "subCity": "Sub City",
             "woreda": "Woreda",
@@ -206,7 +213,11 @@
             "phoneNumber": "Phone Number",
             "birthPlace": "Birth Place",
             "birthDate": "Birth Date",
+            "hiredDate":"Hired Date",
             "occupation": "Coccupation",
+            "rank":"Rank",
+            "ProfilePicture":"Profile Picture",
+            "reponsibilty":"Resposibility",
             "homeNumber": "Home Number",
             "timeLimit": "Time Limit"
         },
@@ -227,7 +238,8 @@
             "lastName": "Last Name",
             "userName": "UserName",
             "password": "Password",
-            "profilePicture": "profile Picture"
+            "profilePicture": "profile Picture",
+            "role":"Role"
         }
     }
 }

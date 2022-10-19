@@ -7,7 +7,7 @@ const dataSourceUrl = `${baseApiUrl}hrs`;
 const actions: Array<Action> = [{ name: 'createNew.edit', type: 'edit' }];
 
 const hrmTableState: TableState = {
-  title:'List of HRM ',
+  title: 'customer.listOfHrm',
   id: 'hrm table',
   pageNumber: 0,
   pageSize: 5,

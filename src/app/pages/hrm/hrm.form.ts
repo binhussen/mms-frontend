@@ -1,12 +1,12 @@
 import { Form } from 'src/app/mms-common/models/form';
 
 const hrmForm: Form = {
-  title: 'Hrm Registeration Form',
+  title: 'customer.form.registerHrm',
   elements: [
     {
       name: 'fpId',
       type: 'text',
-      placeholder: 'Fp Id',
+      placeholder: 'customer.form.fpNumber',
       defaultValue: '',
       size: 2,
       validations: [
@@ -17,7 +17,7 @@ const hrmForm: Form = {
     {
       name: 'firstName',
       type: 'text',
-      placeholder: 'First Name',
+      placeholder: 'customer.form.name',
       defaultValue: '',
       size: 2,
       validations: [
@@ -28,7 +28,7 @@ const hrmForm: Form = {
     {
       name: 'middleName',
       type: 'text',
-      placeholder: 'Middle Name',
+      placeholder: 'customer.form.middleName',
       defaultValue: '',
       size: 2,
       validations: [
@@ -39,7 +39,7 @@ const hrmForm: Form = {
     {
       name: 'lastName',
       type: 'text',
-      placeholder: 'Last Name',
+      placeholder: 'customer.form.lastName',
       defaultValue: '',
       size: 2,
       validations: [
@@ -50,7 +50,7 @@ const hrmForm: Form = {
     {
       name: 'gender',
       type: 'select',
-      placeholder: 'Gender',
+      placeholder: 'customer.form.sex',
       defaultValue: '',
       size: 3,
       options: [
@@ -62,7 +62,7 @@ const hrmForm: Form = {
     {
       name: 'birthDate',
       type: 'date',
-      placeholder: 'Birth Date',
+      placeholder: 'customer.form.birthDate',
       defaultValue: '',
       size: 3,
       validations: [{ type: 'required', value: true }],
@@ -70,7 +70,7 @@ const hrmForm: Form = {
     {
       name: 'higherDate',
       type: 'date',
-      placeholder: 'Hired Date',
+      placeholder: 'customer.form.hiredDate',
       defaultValue: '',
       size: 3,
       validations: [{ type: 'required', value: true }],
@@ -78,7 +78,7 @@ const hrmForm: Form = {
     {
       name: 'occpation',
       type: 'text',
-      placeholder: 'Occupation',
+      placeholder: 'customer.form.occupation',
       defaultValue: '',
       size: 2,
       validations: [
@@ -89,7 +89,7 @@ const hrmForm: Form = {
     {
       name: 'rank',
       type: 'text',
-      placeholder: 'Rank',
+      placeholder: 'customer.form.rank',
       defaultValue: '',
       size: 2,
       validations: [{ type: 'required', value: true }],
@@ -97,7 +97,7 @@ const hrmForm: Form = {
     {
       name: 'reponsibilty',
       type: 'text',
-      placeholder: 'Responsibility',
+      placeholder: 'customer.form.reponsibilty',
       defaultValue: '',
       size: 2,
       validations: [

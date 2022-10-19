@@ -26,7 +26,8 @@
         "createNew": "አዲስ ፍጠር",
         "noRecordFound": "ምንም መዝገብ አልተገኘም!",
         "no": "ተ.ቁ",
-        "report": "ሪፖርት"
+        "report": "ሪፖርት",
+        "searchData":"ፍለጋ"
     },
     "menus": {
         "dashboard": "ዳሽ ቦርድ",
@@ -63,7 +64,9 @@
         "form": {
             "weaponType": "የጦር መሳሪያው አይነት",
             "weaponName": "የጦር መሳሪያ ስም",
-            "quantity": "ብዛት"
+            "quantity": "ብዛት",
+            "model":"ሞዴል"
+
         }
     },
     "notifyWeapon": {
@@ -89,6 +92,7 @@
         },
         "form": {
             "requestForWeapon": "የጦር መሳሪያ መጠየቅያ ቅጽ",
+            "whoIsArmed":"የጦር መሳሪያ የሚታጠቀዉ አከል",
             "type": "የእቃው አይነት",
             "requestStatus": "መጠይቁ ያለበት ሁኔታ",
             "description": "መግለጫ",
@@ -196,9 +200,14 @@
     },
     "customer": {
         "listofOrganizationscustomer": "ከተቋሙ የሚታጠቁ ደንበኞች ዝርዝር",
+        "listOfHrm": "የሰዉ ሀይል ዝርዝር",
         "form": {
             "registerWarranty": "የደንበኞች መመዝገቢያ ቅጽ",
+            "registerHrm": "የሰው ሀይል መመዝገቢያ ቅጽ",
+            "fpNumber":"FP ቁጡር",
             "name": "ስም",
+            "middleName": "የአባት ስም",
+            "lastName":"የአየት ስም",
             "region": "ክልል",
             "subCity": "ክፍለ ከተማ",
             "woreda": "ወረዳ",
@@ -206,7 +215,11 @@
             "phoneNumber": "ስልክ ቁጥር",
             "birthPlace": "የትውልድ ቦታ",
             "birthDate": "የትውልድ ቀን",
+            "hiredDate":"የቅጥር ዘመን",
             "occupation": "ስራ",
+            "rank":"ማዕረግ",
+            "ProfilePicture":"የተጠቃሚ መገለጫ ፎቶ",
+            "reponsibilty":"የስራ ሀለፊነት",
             "homeNumber": "የቤት ቁጥር",
             "timeLimit": "የጊዜ ገደብ"
         },
@@ -227,7 +240,8 @@
             "lastName": "የአባት ስም",
             "userName": "የተጠቃሚው ስም",
             "password": "የይላፍ ቃል",
-            "profilePicture": "የተጠቃሚ መግለጫ ፎቶ"
+            "profilePicture": "የተጠቃሚ መግለጫ ፎቶ",
+            "role":"የተጠቃሚ ሚና"
         }
     }
 }

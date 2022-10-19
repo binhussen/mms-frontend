@@ -5,7 +5,7 @@ const customerForm: Form = {
     {
       name: 'hrId',
       type: 'select',
-      placeholder: 'FP iD',
+      placeholder: 'customer.form.fpNumber',
       defaultValue: '',
       size: 3,
       options: [],
@@ -25,7 +25,7 @@ const customerForm: Form = {
     {
       name: 'picture',
       type: 'file',
-      placeholder: 'Profile Picture',
+      placeholder: 'customer.form.ProfilePicture',
       defaultValue: '',
     },
     {

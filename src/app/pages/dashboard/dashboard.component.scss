@@ -8,8 +8,8 @@
 
 .dashboard{
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 2fr 2fr;
+  grid-template-rows: 2fr 2fr;
   height: 100%;
 }
 .bord{
@@ -29,9 +29,7 @@
 .legend{
   size: 50%;
 }
-.profile {
-  width: 240px;
-  height: 240px;
-  margin-top: 8px;
-  border-radius: 50%;
+.lineChart{
+  width: fit-content;
+  height: 50%;
 }

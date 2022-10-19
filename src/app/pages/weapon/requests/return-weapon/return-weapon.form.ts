@@ -97,7 +97,7 @@ const requestForReturningWeaponForm: Form = {
     {
       name: 'hrId',
       type: 'select',
-      placeholder: 'who is armed',
+      placeholder: 'requestForWeapon.form.whoIsArmed',
       defaultValue: 'Please Select Employee',
       size: 6,
       options: [],
