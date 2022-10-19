@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { AuthenticationService } from '../../../Auths/service/authentication.service';
 
 @Component({
   selector: 'app-tabbed-page',
@@ -7,7 +8,13 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./tabbed-page.component.scss'],
 })
 export class TabbedPageComponent implements OnInit {
-  constructor(public activatedRoute: ActivatedRoute) {}
+  constructor(
+    public activatedRoute: ActivatedRoute,
+    private auth: AuthenticationService
+  ) {}
+  role!: string;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.role = this.auth.getRole();
+  }
 }
