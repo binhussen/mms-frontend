@@ -13,11 +13,10 @@ import { authenticationResponse, userCredentials } from '../model/user.model';
   providedIn: 'root',
 })
 export class AuthenticationService {
-  private baseApiUrl = environment.baseApiUrl;
-
   private readonly tokenKey = 'mmsToken';
-  private readonly roleField = 'role';
-  private readonly userName = 'name';
+  private role = 'Not Found';
+  private userName = 'Not Found';
+
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -25,53 +24,37 @@ export class AuthenticationService {
   ) {}
 
   isAuthenticated(): boolean {
-    let expirationDate, token;
     this.store$
       .select((state) => state.auth)
       .pipe()
       .subscribe((f) => {
-        if (f.action === 'login' && f.status === 'SUCCESS') {
-          expirationDate = new Date(f.response.wellCome.expiration);
-        } else {
-          token = JSON.parse(localStorage.getItem(this.tokenKey) ?? '');
-          expirationDate = new Date(token.expiration!);
+        if (f.status === 'SUCCESS') {
+          const expirationDate = new Date(f.response.wellCome.expiration);
+          this.role = f.response.wellCome.role;
+          this.userName = f.response.wellCome.name;
+          if (!expirationDate) {
+            authAction.authFailure({
+              value: {
+                response: {
+                  error: { status: 401, title: 'Your are not Authorized' },
+                },
+              },
+            });
+            this.returnFalse();
+          } else if (expirationDate <= new Date()) {
+            this.logout();
+            this.returnFalse();
+          }
         }
       });
-    if (!expirationDate) {
-      authAction.authFailure({
+    this.store$.dispatch(
+      authAction.authSuccess({
         value: {
-          response: {
-            error: { status: 401, title: 'Your are not Authorized' },
-          },
+          wellCome: JSON.parse(localStorage.getItem(this.tokenKey) ?? ''),
         },
-      });
-      return false;
-    } else if (expirationDate <= new Date()) {
-      this.logout();
-      return false;
-    } else if (expirationDate > new Date()) {
-      this.store$.dispatch(
-        authAction.authSuccess({ value: { wellCome: token } })
-      );
-      return true;
-    }
+      })
+    );
     return true;
-  }
-
-  getFieldFromJWT(field: string): string {
-    const token = localStorage.getItem(this.tokenKey);
-    if (!token) {
-      return 'invalid token';
-    }
-    const dataToken = JSON.parse(atob(token.split('.')[1]));
-    const role = 'http://schemas.microsoft.com/ws/2008/06/identity/claims/';
-    const name = 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/';
-    if (field == 'role') {
-      return dataToken[role + field];
-    } else if (field == 'name') {
-      return dataToken[name + field];
-    }
-    return token;
   }
 
   logout() {
@@ -84,8 +67,13 @@ export class AuthenticationService {
     this.router.navigateByUrl('/login');
   }
 
+  returnFalse() {
+    return false;
+  }
+
   getUserName(): string {
-    return this.getFieldFromJWT(this.userName);
+    this.isAuthenticated();
+    return this.userName;
   }
 
   login(data: userCredentials, url: string): Observable<any> {
@@ -101,5 +89,10 @@ export class AuthenticationService {
 
   getToken() {
     return localStorage.getItem(this.tokenKey);
+  }
+
+  getRole(): string {
+    this.isAuthenticated();
+    return this.role;
   }
 }

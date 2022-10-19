@@ -22,7 +22,7 @@ import {
 import {
   AbstractControl,
   ControlValueAccessor,
-  FormControl,
+  UntypedFormControl,
   FormGroupDirective,
   NgControl,
   NgForm,
@@ -34,7 +34,6 @@ import {
   ErrorStateMatcher,
   ThemePalette,
 } from '@angular/material/core';
-import {} from '@angular/material/core/common-behaviors';
 import {
   forkJoin,
   Observable,
@@ -76,7 +75,7 @@ interface UploadList {
 export class FileInputComponent {
   @Input()
   title!: string;
-  display: FormControl = new FormControl('', Validators.required);
+  display: UntypedFormControl = new UntypedFormControl('', Validators.required);
   file_store!: FileList;
   file_list: Array<UploadList> = [];
   uploadSubs: Array<Subscription> = [];

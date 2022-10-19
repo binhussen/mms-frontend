@@ -53,7 +53,6 @@ export class DistributeComponent implements OnInit {
     this.httpClient
       .get<Array<any>>('http://localhost:3000/distributedWeapons')
       .subscribe((data) => {
-        console.log(data);
       });
   }
 
@@ -123,7 +122,6 @@ export class DistributeComponent implements OnInit {
   }
 
   async command(action: Action, row: any) {
-    console.log(action, row);
     const weaponItems = await this.getWeaponItems().toPromise();
     const dialogRef = this.matDialog.open(DialogComponent, {
       width: '75%',

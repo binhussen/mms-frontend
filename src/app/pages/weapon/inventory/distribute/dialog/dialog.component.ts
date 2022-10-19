@@ -7,7 +7,7 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 import { MatButton } from '@angular/material/button';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatStepper } from '@angular/material/stepper';
@@ -38,8 +38,8 @@ export class DialogComponent implements OnInit, AfterViewInit {
 
   completed = false;
 
-  step1!: FormGroup;
-  step2!: FormGroup;
+  step1!: UntypedFormGroup;
+  step2!: UntypedFormGroup;
 
   isStep1Completed: boolean = false;
   isStep2Completed: boolean = false;
@@ -87,8 +87,7 @@ export class DialogComponent implements OnInit, AfterViewInit {
     @Inject(MAT_DIALOG_DATA) public inputData: any,
     private dialogRef: MatDialogRef<DialogComponent>,
     private http: HttpClient
-  ) {
-    console.log('inputData', inputData);
+  ) {;
     this.data = inputData;
   }
   ngAfterViewInit(): void {
@@ -105,24 +104,17 @@ export class DialogComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.logValues('OnInit');
-    this.step1 = new FormGroup({});
-    this.step2 = new FormGroup({});
-    console.log(this.userRegistrationFormComponent);
+    this.step1 = new UntypedFormGroup({});
+    this.step2 = new UntypedFormGroup({});
   }
   onSubmit(formData: any, step: 'step1' | 'step2') {
-    console.log(formData);
     this.steps[step].submitFunction(formData).subscribe((response) => {
-      console.log(response);
       this.steps[step].response = response;
       this.steps[step].isCompleted = true;
       this.stepper.next();
     });
-    //  console.log(formData, userRegistration.valid, stepper.next());
   }
   logValues(eventType: string) {
-    console.log(
-      `[${eventType}]\n userRegistration: ${this.userRegistrationFormComponent}\n`
-    );
   }
 
   submitUserRegistrationForm(value: any) {
@@ -173,7 +165,6 @@ export class DialogComponent implements OnInit, AfterViewInit {
     ).pipe(
       concatAll(),
       catchError((error) => {
-        console.log(error);
         return error;
       })
     );
@@ -184,7 +175,7 @@ export class DialogComponent implements OnInit, AfterViewInit {
       requestStatus: status,
     });
   }
-  isCompleted(form: FormGroup) {
+  isCompleted(form: UntypedFormGroup) {
     return form ? form.valid : false;
   }
 }

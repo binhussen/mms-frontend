@@ -19,6 +19,5 @@ onClose(){
   this.router.navigate(['admin/dashboard']);
 }
 onSubmit(event: any) {
-  console.log(event);
 }
 }

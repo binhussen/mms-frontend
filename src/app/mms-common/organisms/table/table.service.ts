@@ -62,15 +62,15 @@ export class TableService {
       observe: 'response',
       params,
     });
-    httpResponse.subscribe((response) => {
-      console.log(response);
-    });
 
+    // {"CurrentPage":1,"TotalPages":1,"PageSize":10,"TotalCount":7,"HasPrevious":false,"HasNext":false}
+    //
     return httpResponse.pipe(
       map((data: HttpResponse<any>) => ({
-        count: Number(data.headers.get('X-Total-Count') ?? '20'),
+        count:
+          JSON.parse(data.headers.get('X-Pagination') ?? '').TotalCount ?? 20,
         data: data.body ?? [],
-        // pag: data,
+        check: data.headers,
       }))
     );
   }

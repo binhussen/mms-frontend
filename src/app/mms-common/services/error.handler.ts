@@ -1,8 +1,8 @@
 import {
   AbstractControl,
-  FormArray,
-  FormControl,
-  FormGroup,
+  UntypedFormArray,
+  UntypedFormControl,
+  UntypedFormGroup,
   ValidationErrors,
 } from '@angular/forms';
 import { Injectable } from '@angular/core';
@@ -16,7 +16,7 @@ export declare interface ServerError {
   providedIn: 'root',
 })
 export class ErrorHandler {
-  private form!: FormGroup;
+  private form!: UntypedFormGroup;
   private serverError!: any;
   private errorObject!: ServerError;
   private message!: string;
@@ -31,7 +31,7 @@ export class ErrorHandler {
    * @param serverError       Error object that is received from the server
    * @param form              Form to which errors belong to.
    */
-  public organizeServerErrors(serverError: ServerError, form: FormGroup) {
+  public organizeServerErrors(serverError: ServerError, form: UntypedFormGroup) {
     if (serverError && typeof serverError === 'object') {
       this.form = form;
       this.serverError = serverError;
@@ -46,7 +46,7 @@ export class ErrorHandler {
    * @param form              Form to be listened
    * @param errorObject       Error object which to set errors.
    */
-  public handleErrors(form: FormGroup, errorObject: any) {
+  public handleErrors(form: UntypedFormGroup, errorObject: any) {
     this.form = form;
     this.errorObject = errorObject;
     form.valueChanges
@@ -110,21 +110,21 @@ export class ErrorHandler {
    */
   private findErrors(controls: { [key: string]: AbstractControl }) {
     Object.keys(controls).forEach((control: string) => {
-      if (controls[control] instanceof FormArray) {
+      if (controls[control] instanceof UntypedFormArray) {
         Object.defineProperty(this.errorObject, control, {
           value: [],
           writable: true,
         });
-        this.findErrorsOnFormArrays(controls[control] as FormArray, control);
-      } else if (controls[control] instanceof FormControl) {
+        this.findErrorsOnFormArrays(controls[control] as UntypedFormArray, control);
+      } else if (controls[control] instanceof UntypedFormControl) {
         this.findErrorsOnFormControls(controls, control);
       }
     });
   }
 
-  private findErrorsOnFormArrays(formArray: FormArray, formArrayName: string) {
+  private findErrorsOnFormArrays(formArray: UntypedFormArray, formArrayName: string) {
     let i = 0;
-    for (const formGroup of formArray.controls as FormGroup[]) {
+    for (const formGroup of formArray.controls as UntypedFormGroup[]) {
       const controls = formGroup.controls;
       const formArrayErrors: any[] = this.errorObject[formArrayName];
       formArrayErrors.push({});
@@ -181,7 +181,6 @@ export class ErrorHandler {
       this.message = 'There is an account with that email';
     } else {
       this.message = '';
-      console.log(errors);
     }
   }
 

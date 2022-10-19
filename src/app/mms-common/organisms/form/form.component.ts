@@ -8,10 +8,10 @@ import {
 } from '@angular/core';
 import {
   AbstractControl,
-  FormArray,
-  FormBuilder,
-  FormControl,
-  FormGroup,
+  UntypedFormArray,
+  UntypedFormBuilder,
+  UntypedFormControl,
+  UntypedFormGroup,
   Validators,
 } from '@angular/forms';
 import { ErrorHandler } from '../../services/error.handler';
@@ -69,7 +69,7 @@ export class FormComponent implements OnInit, OnDestroy {
   @Input()
   submittedToUrl!: string;
 
-  mmsForm!: FormGroup;
+  mmsForm!: UntypedFormGroup;
   errors: any = {};
   data: any = {};
 
@@ -78,7 +78,7 @@ export class FormComponent implements OnInit, OnDestroy {
   @Output()
   onFormSubmit = new EventEmitter();
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private errorHandler: ErrorHandler,
     private store$: Store<AppState>
   ) {}
@@ -128,7 +128,7 @@ export class FormComponent implements OnInit, OnDestroy {
                   this.submittedToUrl ?? '',
                   element.name
                 );
-                if (control instanceof FormGroup) {
+                if (control instanceof UntypedFormGroup) {
                   for (let con in control.controls) {
                     control.controls[con].patchValue(
                       updating[elementPath][index][con] ?? element.defaultValue
@@ -136,13 +136,13 @@ export class FormComponent implements OnInit, OnDestroy {
                   }
                 }
 
-                if (control instanceof FormControl) {
+                if (control instanceof UntypedFormControl) {
                   control.patchValue(
                     updating[elementPath][index] ?? element.defaultValue
                   );
                 }
               });
-              const formArray = this.mmsForm.get(element.name) as FormArray;
+              const formArray = this.mmsForm.get(element.name) as UntypedFormArray;
               this.mmsForm.setControl(
                 element.name,
                 items ? this.fb.array(items) : formArray
@@ -161,7 +161,6 @@ export class FormComponent implements OnInit, OnDestroy {
   }
 
   someInformalShit(submittedToUrl: string, elementName: string) {
-    console.log(submittedToUrl);
     if (submittedToUrl.includes('requestWeaponApprovals')) {
       return 'requestWeaponItems';
     }
@@ -206,7 +205,6 @@ export class FormComponent implements OnInit, OnDestroy {
             tap((value) => {
               // this.data[elementPath] = value;
               this.data[formElement.name] = value;
-              console.log(this.data);
             })
           )
         : of(formElement.options ?? []);
@@ -257,7 +255,7 @@ export class FormComponent implements OnInit, OnDestroy {
     return size ? `0 1 calc(${s}% - 16px)` : `${s}%`;
   }
 
-  getNewFormGroup(elements: Array<FormElement>): FormGroup {
+  getNewFormGroup(elements: Array<FormElement>): UntypedFormGroup {
     const temp: any = {};
     // AbstractControl base -> FormGroup / FormControl / FormArray
     elements.forEach((element) => {
@@ -277,9 +275,9 @@ export class FormComponent implements OnInit, OnDestroy {
     elements.forEach((element) => {
       if (element.type === 'formArray') {
         element.formArrayItems?.forEach((item) => {});
-        const items = (this.mmsForm.get(element.name) as FormArray).controls;
+        const items = (this.mmsForm.get(element.name) as UntypedFormArray).controls;
         items.forEach((control) => {
-          if (control instanceof FormGroup) {
+          if (control instanceof UntypedFormGroup) {
             const controls = control.controls;
             for (let con in controls) {
               const tempEl = element.formArrayItems?.find(
@@ -304,7 +302,7 @@ export class FormComponent implements OnInit, OnDestroy {
         });
       } else {
         if (element.computeValueFrom) {
-          const tempEl = this.mmsForm.get(element.name) as FormControl;
+          const tempEl = this.mmsForm.get(element.name) as UntypedFormControl;
           const sub2 = combineLatest(
             element.computeValueFrom.elements.map(
               (el) => this.mmsForm.get(el)?.valueChanges
@@ -325,12 +323,12 @@ export class FormComponent implements OnInit, OnDestroy {
     });
   }
 
-  getNewFormArray(elements: Array<FormElement>): FormArray {
+  getNewFormArray(elements: Array<FormElement>): UntypedFormArray {
     const item = this.getNewFormItem(elements);
     return this.fb.array([item]);
   }
 
-  getNewFormItem(elements: Array<FormElement>): FormGroup | FormControl {
+  getNewFormItem(elements: Array<FormElement>): UntypedFormGroup | UntypedFormControl {
     if (elements.length > 1) {
       return this.getNewFormGroup(elements);
     }
@@ -346,21 +344,21 @@ export class FormComponent implements OnInit, OnDestroy {
     elements: Array<FormElement>
   ) {
     event.preventDefault();
-    const formArray = this.mmsForm.get(path) as FormArray;
+    const formArray = this.mmsForm.get(path) as UntypedFormArray;
     const newItem = this.getNewFormItem(elements);
     formArray.push(newItem);
     this.computeValues(this.form.elements);
   }
   removeFormItemFromFormArray(event: any, path: string, index: number) {
     event.preventDefault();
-    const formArray = this.mmsForm.get(path) as FormArray;
+    const formArray = this.mmsForm.get(path) as UntypedFormArray;
     formArray.removeAt(index);
   }
   getFormArrayItems(path: string) {
-    return (this.mmsForm.get(path) as FormArray).controls;
+    return (this.mmsForm.get(path) as UntypedFormArray).controls;
   }
   setFileControl(results: Array<string>, controlName: string) {
-    const fileControl = this.mmsForm.get(controlName) as FormControl;
+    const fileControl = this.mmsForm.get(controlName) as UntypedFormControl;
     fileControl.patchValue(results.join(','));
   }
 }
