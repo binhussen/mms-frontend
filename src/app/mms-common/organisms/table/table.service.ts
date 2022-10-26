@@ -67,8 +67,9 @@ export class TableService {
     //
     return httpResponse.pipe(
       map((data: HttpResponse<any>) => ({
-        count:
-          JSON.parse(data.headers.get('X-Pagination') ?? '').TotalCount ?? 20,
+        count: data.headers.get('X-Pagination')
+          ? JSON.parse(data.headers.get('X-Pagination')!).TotalCount
+          : 20,
         data: data.body ?? [],
         check: data.headers,
       }))
