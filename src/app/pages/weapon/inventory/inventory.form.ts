@@ -58,11 +58,7 @@ const inventoryForm: Form = {
           placeholder: 'inventory.insertWeapon.form.weaponType',
           defaultValue: '',
           size: 3,
-          options: [
-            { value: 'Weapon', label: 'Weapon' },
-            { value: 'Bullet', label: 'Bullet' },
-            { value: 'Other', label: 'Other' },
-          ],
+          options: [ ],
           validations: [{ type: 'required', value: true }],
         },
         {
@@ -74,10 +70,11 @@ const inventoryForm: Form = {
         },
         {
           name: 'model',
-          type: 'text',
+          type: 'select',
           placeholder: 'inventory.insertWeapon.form.weaponModel',
           defaultValue: '',
           size: 3,
+          options:[],
           validations: [
             { type: 'required', value: true },
             { type: 'minLength', value: 3 },

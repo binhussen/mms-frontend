@@ -225,13 +225,13 @@ export class DashboardComponent {
   getData() {
     // number of Store
     this.dashboardService
-      .findAll('http://localhost:5000/api/storeheaders')
+      .findAll('http://localhost:5000/api/items')
       .subscribe((val) => (this.numberOfWeapon = val.length));
      console.log(this.numberOfWeapon);
 
     // number of damages
     this.dashboardService
-      .findAll('http://localhost:5000/api/damagesHeaders')
+      .findAll('http://localhost:5000/api/items')
       .subscribe((val) => (this.numberOfDamages = val.length));
     // number of Requests
     this.dashboardService

@@ -32,13 +32,14 @@
     "menus": {
         "dashboard": "ዳሽ ቦርድ",
         "weapon": "የጦር መሳሪያ",
-        "notifyWeapon": "የጦር መሳሪያ ማሰወቅ",
+        "notifyWeapon": "የጦር መሳሪያ ርክክብ",
         "inventory": "የጦር መሳሪያ መከማቻ",
         "request": "የጦር መሳሪያ መጠየቅ",
         "reportDamages": "የሚወገዱ ጦር መሳሪያዎች",
         "userManagement": "የተጠቃሚ አስተዳደር",
         "customer": "ከተቆሙ የሚታጠቁ ደንበኞች",
-        "hrm": "የሰው ሀይል"
+        "hrm": "የሰው ሀይል",
+        "itemsLookup":"Items Lookup"
     },
     "createNew": {
         "expand": "ተጨማሪ /ዝርዝር",

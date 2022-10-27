@@ -31,13 +31,14 @@
     "menus": {
         "dashboard": "Dashboard",
         "weapon": "Weapon",
-        "notifyWeapon": "Notify Weapon",
+        "notifyWeapon": "Voucher",
         "inventory": "Store Weapon",
         "request": "Request Weapon",
         "reportDamages": "report Damages",
         "userManagement": "User Managment",
         "customer": "customers",
-        "hrm": "hrm"
+        "hrm": "hrm",
+        "itemsLookup":"Items Lookup"
     },
     "createNew": {
         "expand": "Expand",

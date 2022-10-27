@@ -65,4 +65,11 @@ export const menus: Array<Menu> = [
     open: false,
     trans: 'menus.userManagement',
   },
+  {
+    name:'items lookup',
+    icon:'category',
+    link:'items lookup',
+    open:false,
+    trans:'menus.itemsLookup'
+  }
 ];
