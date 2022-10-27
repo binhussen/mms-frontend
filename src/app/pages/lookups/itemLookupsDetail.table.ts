@@ -3,17 +3,16 @@ import { TableState } from 'src/app/store/models/table.state';
 import { environment } from 'src/environments/environment';
 
 const baseApiUrl = environment.baseApiUrl;
-const dataSourceUrl = `${baseApiUrl}hrs`;
+const dataSourceUrl = `${baseApiUrl}notifyheaders`;
 const actions: Array<Action> = [{ name: 'createNew.edit', type: 'edit' }];
 
-const hrmTableState: TableState = {
-  title: 'customer.listOfHrm',
-  id: 'hrm table',
+const itemLookupsDetailTableState: TableState = {
+  id: 'lookups items table',
   pageNumber: 0,
   pageSize: 5,
   totalItems: 0,
   data: [],
-  excludedColumns: ['id', 'hrmId'],
+  excludedColumns: ['id'],
   links: {
     getPath: dataSourceUrl,
     createPath: `${dataSourceUrl}`,
@@ -21,10 +20,15 @@ const hrmTableState: TableState = {
     deletePath: `${dataSourceUrl}/[id]`,
   },
   actions,
-  path:"hrs",
+  path:"items",
   relations: [],
   childOf: {
     notifiesId: 0,
   },
 };
-export default hrmTableState;
+
+// set this state to the store
+// effect will fetch the data from the api and set it to the store
+
+export default itemLookupsDetailTableState;
+

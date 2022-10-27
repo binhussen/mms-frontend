@@ -2,11 +2,6 @@
   <app-side-nav-header></app-side-nav-header>
   <ng-container *ngFor="let menu of menus">
     <app-side-nav-item
-      *ngIf="menu.name==='Dashboard'|| admin && (menu.name==='Hr'||menu.name==='Customer'||menu.name==='UserManagement')||
-      request && menu.name === 'Weapon'||
-      view && menu.name==='Weapon'||
-      storeMan && menu.name==='Weapon'||menu.name==='Hr'||menu.name==='Customer'||
-      approve && menu.name==='Weapon'||menu.name==='Hr'||menu.name==='Customer'||menu.name==='UserManagement'"
       [menu]="menu"
     ></app-side-nav-item>
   </ng-container>

@@ -54,6 +54,7 @@
 
           <ngx-charts-pie-chart class="pieChart"
           *ngIf="card.title == 'pieChart'"
+            [view]=[500,300]
             [results]="pieChartData"
             [gradient]="gradient"
             [legend]="showLegend"

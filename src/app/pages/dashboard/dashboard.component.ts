@@ -59,6 +59,7 @@ export class DashboardComponent {
   numberOfWeapon!: number;
   numberOfBullet!: number;
   numberOfOther!: number;
+  numberOfCustomer!:number;
   //Pie Chart
   // options
   gradient: boolean = true;
@@ -96,23 +97,23 @@ export class DashboardComponent {
   statCardList = [
     {
       icon: 'storefront',
-      title: 'Number of Weapons',
-      amount: 10,
-    },
-    {
-      icon: 'store',
-      title: 'Number Of Bullets',
-      amount: 20,
+      title: 'Number of item In Store',
+      amount: this.numberOfWeapon,
     },
     {
       icon: 'shopping_cart',
       title: 'Number of Requests',
-      amount: 30,
+      amount: this.numberOfRequests,
     },
     {
       icon: 'shopping_cart',
-      title: 'Number Of Damages',
-      amount: 0,
+      title: 'Number of Damages',
+      amount: this.numberOfDamages,
+    },
+    {
+      icon: 'group icon',
+      title: 'Number of External Customer',
+      amount: this.numberOfCustomer,
     },
   ];
   //Line Chart
@@ -134,16 +135,20 @@ export class DashboardComponent {
       name: 'Inventory',
       series: [
         {
-          name: '2012',
+          name: '2011',
           value: 10,
         },
         {
-          name: '2013',
+          name: '2012',
           value: 20,
         },
         {
-          name: '2014',
+          name: '2013',
           value: 30,
+        },
+        {
+          name: '2014',
+          value: 40,
         },
       ],
     },
@@ -152,16 +157,62 @@ export class DashboardComponent {
       name: 'Distribute',
       series: [
         {
-          name: '2012',
-          value: 14,
-        },
-        {
-          name: '2013',
+          name: '2011',
           value: 20,
         },
         {
-          name: '2014',
+          name: '2012',
+          value: 40,
+        },
+        {
+          name: '2013',
           value: 50,
+        },
+        {
+          name: '2014',
+          value: 70,
+        },
+      ],
+    },
+    {
+      name: 'Damages',
+      series: [
+        {
+          name: '2011',
+          value: 20,
+        },
+        {
+          name: '2012',
+          value: 40,
+        },
+        {
+          name: '2013',
+          value: 50,
+        },
+        {
+          name: '2014',
+          value: 70,
+        },
+      ],
+    },
+    {
+      name: 'Requests',
+      series: [
+        {
+          name: '2011',
+          value: 20,
+        },
+        {
+          name: '2012',
+          value: 40,
+        },
+        {
+          name: '2013',
+          value: 50,
+        },
+        {
+          name: '2014',
+          value: 70,
         },
       ],
     },
@@ -172,28 +223,25 @@ export class DashboardComponent {
   }
 
   getData() {
-    // number of requests
+    // number of Store
     this.dashboardService
-      .findAll('${baseApiUrl}')
-      .subscribe((val) => (this.numberOfRequests = val.length));
+      .findAll('http://localhost:5000/api/items')
+      .subscribe((val) => (this.numberOfWeapon = val.length));
+     console.log(this.numberOfWeapon);
 
     // number of damages
     this.dashboardService
-      .findAll('http://localhost:3000/damages')
+      .findAll('http://localhost:5000/api/items')
       .subscribe((val) => (this.numberOfDamages = val.length));
-    // number of weapons
+    // number of Requests
     this.dashboardService
-      .findAll('http://localhost:3000/weaponItems', { weaponType: 'Weapon' })
-      .subscribe((val) => (this.numberOfWeapon = val.length));
-    // number of bullets
+      .findAll('http://localhost:5000/api/requestheaders')
+      .subscribe((val) => (this.numberOfRequests = val.length));
+    // number of Customer
     this.dashboardService
-      .findAll('http://localhost:3000/weaponItems', { weaponType: 'Bullet' })
-      .subscribe((val) => (this.numberOfBullet = val.length));
-    // number of other
-    this.dashboardService
-      .findAll('http://localhost:3000/weaponItems', { weaponType: 'Other' })
+      .findAll('http://localhost:5000/api/customers')
       .subscribe((val) => {
-        this.numberOfOther = val.length;
+        this.numberOfCustomer = val.length;
         // update chart
         this.getCharts();
         //  update board
@@ -230,13 +278,8 @@ export class DashboardComponent {
     this.statCardList = [
       {
         icon: 'storefront',
-        title: 'Number of Weapons',
+        title: 'Number of Item In Store',
         amount: this.numberOfWeapon,
-      },
-      {
-        icon: 'store',
-        title: 'Number Of Bullets',
-        amount: this.numberOfBullet,
       },
       {
         icon: 'shopping_cart',
@@ -247,6 +290,11 @@ export class DashboardComponent {
         icon: 'shopping_cart',
         title: 'Number Of Damages',
         amount: this.numberOfDamages,
+      },
+      {
+        icon: 'group icon',
+        title: 'Number of External Customer',
+        amount: this.numberOfCustomer,
       },
     ];
   }

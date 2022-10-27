@@ -3,17 +3,20 @@ import { TableState } from 'src/app/store/models/table.state';
 import { environment } from 'src/environments/environment';
 
 const baseApiUrl = environment.baseApiUrl;
-const dataSourceUrl = `${baseApiUrl}hrs`;
-const actions: Array<Action> = [{ name: 'createNew.edit', type: 'edit' }];
+const dataSourceUrl = `${baseApiUrl}categories`;
+const actions: Array<Action> = [
+  { name: 'createNew.expand', type: 'expand', path: 'categories' },
+  { name: 'createNew.edit', type: 'edit' },
+];
 
-const hrmTableState: TableState = {
-  title: 'customer.listOfHrm',
-  id: 'hrm table',
+const itemLookupsTableState: TableState = {
+  title: 'List of Item lookups',
+  id: 'Item Lookups table',
   pageNumber: 0,
   pageSize: 5,
   totalItems: 0,
   data: [],
-  excludedColumns: ['id', 'hrmId'],
+  excludedColumns: ['id'],
   links: {
     getPath: dataSourceUrl,
     createPath: `${dataSourceUrl}`,
@@ -21,10 +24,10 @@ const hrmTableState: TableState = {
     deletePath: `${dataSourceUrl}/[id]`,
   },
   actions,
-  path:"hrs",
+  path:"items",
   relations: [],
   childOf: {
     notifiesId: 0,
   },
 };
-export default hrmTableState;
+export default itemLookupsTableState;

@@ -39,7 +39,7 @@
       <input
         type="text"
         (keyup)="searchData($event)"
-        placeholder="search data"
+        placeholder="ፍለጋ " 
       />
       <!-- ////////////////////////// -->
       <button mat-icon-button>
@@ -60,7 +60,7 @@
         color="primary"
         (click)="command({ type: 'create', name: 'Create New' }, undefined)"
       >
-        <mat-icon>add</mat-icon>
+        <mat-icon>add</mat-icon> 
         {{ "formAction.createNew" | translate }}
       </button>
     </div>

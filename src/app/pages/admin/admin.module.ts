@@ -17,6 +17,14 @@ const routes: Routes = [
         //canActivate:[AuthGuard]
       },
       {
+        path: 'items lookup',
+        loadChildren: () =>
+          import('../lookups/lookups.module').then(
+            (m) => m.LookupsModule
+          ),
+         // canActivate: [AuthGuard]
+      },
+      {
         path: 'hrms',
         loadChildren: () =>
           import('../hrm/hrm.module').then(

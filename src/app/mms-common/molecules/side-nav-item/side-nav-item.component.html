@@ -1,5 +1,4 @@
 <mat-nav-list
-  *ngIf="(!(menu.name === 'Notify'||menu.name==='Damage') || !request)"
   [style.maxHeight]="menu.open && menu.sub ? '500px' : '48px'"
   [ngClass]="{ secondaryMenu: secondaryMenu, primary: !secondaryMenu }"
 >

@@ -44,7 +44,7 @@ const userForm: Form = {
     {
       name: 'roles',
       type: 'select',
-      placeholder: 'requestForWeapon.form.role',
+      placeholder: 'createAccount.form.role',
       defaultValue: '',
       size: 4,
       options: [
