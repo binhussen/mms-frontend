@@ -1,8 +1,12 @@
-<mat-nav-list
-  *ngIf="(!(menu.name === 'Notify'||menu.name==='Damage') || !request)"
-  [style.maxHeight]="menu.open && menu.sub ? '500px' : '48px'"
-  [ngClass]="{ secondaryMenu: secondaryMenu, primary: !secondaryMenu }"
->
+<!--<mat-nav-list-->
+<!--  *ngIf="(!(menu.name === 'Notify'||menu.name==='Damage') || !request)"-->
+<!--  [style.maxHeight]="menu.open && menu.sub ? '500px' : '48px'"-->
+<!--  [ngClass]="{ secondaryMenu: secondaryMenu, primary: !secondaryMenu }"-->
+<!--&gt;-->
+  <mat-nav-list
+    [style.maxHeight]="menu.open && menu.sub ? '500px' : '48px'"
+    [ngClass]="{ secondaryMenu: secondaryMenu, primary: !secondaryMenu }"
+  >
   <mat-list-item
     *ngIf="menu.link"
     [routerLink]="menu.link"
