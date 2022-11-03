@@ -36,11 +36,19 @@
     </div>
     <div class="table-header-actions">
       <!-- ///////////////////////// -->
-      <input
-        type="text"
-        (keyup)="searchData($event)"
-        placeholder="search data"
-      />
+      <input matInput type="text"
+             placeholder = "ፈልግ..."
+             (keyup)="searchData($event)" />
+
+      <!-- SELECT INPUT -->
+      <mat-form-field
+        *ngIf="!form">
+      <mat-label>አይነት</mat-label>
+      <mat-select>
+        <mat-option  *ngFor="let opt of options">{{opt.value}}</mat-option>
+      </mat-select>
+      </mat-form-field>
+
       <!-- ////////////////////////// -->
       <button mat-icon-button>
         <mat-icon>refresh</mat-icon>
@@ -54,8 +62,10 @@
         <mat-icon>filter_list</mat-icon>
       </button>
 
+
+<!--      *ngIf="tableState?.links?.createPath"-->
       <button
-        *ngIf="tableState?.links?.createPath"
+        *ngIf="form"
         mat-button
         color="primary"
         (click)="command({ type: 'create', name: 'Create New' }, undefined)"
@@ -88,9 +98,9 @@
         *ngFor="let column of columns"
         [cdkColumnDef]="column.columnDef"
       >
-        <mat-header-cell *cdkHeaderCellDef>{{ column.header }}</mat-header-cell>
+        <mat-header-cell *cdkHeaderCellDef>{{ column.columnDef | translate }}</mat-header-cell>
         <mat-cell *cdkCellDef="let row; let i = index">
-          <span class="mobile-label">{{ column.header | translate }}:</span>
+          <span class="mobile-label">{{ column.columnDef | translate }}:</span>
           <ng-container *ngIf="row && column.cell(row)">
             <a
               href="{{ column.cell(row) }}"
@@ -118,7 +128,7 @@
             >
           </ng-container>
 
-          <ng-container *ngIf="!column.cell(row) && column.columnDef == 'No'">
+          <ng-container *ngIf="!column.cell(row) && column.columnDef == 'no'">
             {{ i + previousSize + 1 }}
           </ng-container>
           <div class="hidedata">
