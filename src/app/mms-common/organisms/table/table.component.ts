@@ -72,6 +72,17 @@ export class TableComponent implements OnInit, AfterViewInit {
 
   tableState$!: Observable<TableState>;
   links!: any;
+
+  options = [
+    { value: 'ሽጉጥ', label: 'ሽጉጥ', serializable: true },
+    { value: 'ጠብመንጃ', label: 'ጠብመንጃ', serializable: true },
+    { value: 'ጥይት', label: 'ጥይት', serializable: false },
+    { value: 'ቦንብ', label: 'ቦንብ', serializable: false },
+    { value: 'መተረየስ', label: 'መተረየስ', serializable: true },
+    { value: 'ካርታ', label: 'ካርታ', serializable: false },
+    { value: 'ሌሎች', label: 'ሌሎች', serializable: false },
+  ];
+
   constructor(
     public dialog: MatDialog,
     private router: Router,
@@ -213,6 +224,7 @@ export class TableComponent implements OnInit, AfterViewInit {
             this.data,
             excludedColumns ?? []
           );
+          console.log(this.columns);
           data.map((item) => {
             const currentUrl = this.router.url.split('/')[5];
             if (item.status === 'distribute' && currentUrl == 'individual')
