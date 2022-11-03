@@ -26,7 +26,8 @@
         "createNew": "አዲስ ፍጠር",
         "noRecordFound": "ምንም መዝገብ አልተገኘም!",
         "no": "ተ.ቁ",
-        "report": "ሪፖርት"
+        "report": "ሪፖርት",
+      "search": "ፈልግ"
     },
     "menus": {
         "dashboard": "ዳሽ ቦርድ",
@@ -229,5 +230,10 @@
             "password": "የይላፍ ቃል",
             "profilePicture": "የተጠቃሚ መግለጫ ፎቶ"
         }
-    }
+    },
+
+    "no": "ተ.ቁ",
+    "itemNoInExpenditureRegister":"item",
+    "noOfEntryInTheRegisterOfIncomingGoods":"noOf",
+    "donor":"Don"
 }

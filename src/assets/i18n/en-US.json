@@ -26,7 +26,8 @@
         "createNew": "Create New",
         "noRecordFound": "No Record Found",
         "no": "NO",
-        "report": "Report"
+        "report": "Report",
+      "search": "Search"
     },
     "menus": {
         "dashboard": "Dashboard",
@@ -229,5 +230,10 @@
             "password": "Password",
             "profilePicture": "profile Picture"
         }
-    }
+    },
+
+    "no": "No",
+    "itemNoInExpenditureRegister":"itemNoInExpenditureRegister",
+    "noOfEntryInTheRegisterOfIncomingGoods":"noOfEntryInTheRegisterOfIncomingGoods",
+    "donor":"Doner"
 }
