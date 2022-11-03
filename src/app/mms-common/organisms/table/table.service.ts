@@ -27,16 +27,19 @@ export class TableService {
     }
 
     // add additional column for actions and position
-    columns = ['No', ...columns, ' '];
+    columns = ['no', ...columns, ' '];
 
     // Describe the columns for <mat-table>.
+    //
+    //
+    // header: column.replace(/([^A-Z])([A-Z])/g, '$1 $2'),
     return columns.map((column: any, index: number) => {
       return {
         columnDef: column,
-        header: column.replace(/([^A-Z])([A-Z])/g, '$1 $2'),
+        header: column,
         cell: (element: any) =>
           `${
-            column === 'No'
+            column === 'no'
               ? ''
               : element && element[column]
               ? element[column]
