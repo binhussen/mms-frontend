@@ -233,7 +233,30 @@
     },
 
     "no": "ተ.ቁ",
-    "itemNoInExpenditureRegister":"item",
-    "noOfEntryInTheRegisterOfIncomingGoods":"noOf",
-    "donor":"Don"
+  "itemNoInExpenditureRegister": "ዋጋው በገንዘብ ወጪ መዝገብ የተከፈለበት ቁጥር ",
+  "noOfEntryInTheRegisterOfIncomingGoods": " በዕቃ ገቢ መዝገብ የገባበት ንምራብ ",
+  "donor": " አስረካቢው ",
+  "itemDescription": " የእቃው ወይም የንብረት አይነት በዝርዝር ",
+  "model": " ሞዴል ",
+  "serialNo": " ሴሪ ",
+  "type": " የእቃው አይነት ",
+  "storeNo": " እቃው የሚቀመጥበት መጋዘን ቁጥር ",
+  "shelfNo": " የመደርደሪያ ቁጥር ",
+  "availableQuantity": " የሚገኝ ብዛት ",
+  "approvedQuantity": " የፀደቀ ብዛት ",
+
+  "quantity": "ብዛት",
+  "unitPrice": "የአንዱ ዋጋ",
+  "totalPrice": "ጠቅላላ ዋጋ",
+  "itemType": "የጦር መሳሪያ አይነት",
+  "availability": "የሚገኝ ብዛት",
+
+  "requestHeaderId": "",
+  "description": " የእቃው ወይም የንብረት አይነት በዝርዝር ",
+  "attachments": " አባሪ ",
+  "requestItemId": "",
+  "name": " ስም ",
+  "status": "ሁነት",
+  "requestedQuantity": " የተጠየቀ ብዛት ",
+  "distributeQuantity": " የተሰራጨ ብዛት "
 }

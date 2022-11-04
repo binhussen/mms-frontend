@@ -233,7 +233,30 @@
     },
 
     "no": "No",
-    "itemNoInExpenditureRegister":"itemNoInExpenditureRegister",
-    "noOfEntryInTheRegisterOfIncomingGoods":"noOfEntryInTheRegisterOfIncomingGoods",
-    "donor":"Doner"
+  "itemNoInExpenditureRegister": "Item No In Expenditure Register",
+  "noOfEntryInTheRegisterOfIncomingGoods": "No Of Entry InTheRegisterOf IncomingGoods",
+  "donor": "Donor",
+  "itemDescription": "Item Description",
+  "model": "Model",
+  "serialNo": "Serial No",
+  "type": "Type",
+  "storeNo": "Store No",
+  "shelfNo": "Shelf No",
+  "availableQuantity": "Available Quantity",
+  "approvedQuantity":"Approved Quantity",
+
+  "quantity": "Quantity",
+  "unitPrice": "Unit Price",
+  "totalPrice": "Total Price",
+  "itemType": "Item Type",
+  "availability": "Availability",
+
+  "requestHeaderId": "",
+  "description": " የእቃው ወይም የንብረት አይነት በዝርዝር ",
+  "attachments": " አባሪ ",
+  "requestItemId": "",
+  "name": " ስም ",
+  "status": "ሁነት",
+  "requestedQuantity": " የተጠየቀ ብዛት ",
+  "distributeQuantity": " የተሰራጨ ብዛት "
 }
