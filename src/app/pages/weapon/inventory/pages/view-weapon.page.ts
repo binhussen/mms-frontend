@@ -1,4 +1,6 @@
-import viewWeaponTable from '../tables/view-weapon.table';
+import viewWeaponTable, {
+  viewWeaponDetailTable,
+} from '../tables/view-weapon.table';
 
 // const viewWeaponPage = {
 //   title: 'View Weapon Inventories',
@@ -12,6 +14,12 @@ const viewWeaponPage = {
   title: 'View Weapon Inventories',
   table: viewWeaponTable,
   type: 'default page',
-  // form: requestWeaponForm.requestForWeaponForm,
 };
+
+export const viewWeaponDetailPage = {
+  title: 'View Weapon Detail Inventories',
+  table: viewWeaponDetailTable,
+  type: 'default page',
+};
+
 export default viewWeaponPage;

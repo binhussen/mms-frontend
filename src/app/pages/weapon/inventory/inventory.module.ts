@@ -43,6 +43,11 @@ import { TranslateModule } from '@ngx-translate/core';
             data: viewWeaponPage,
           },
           {
+            path: 'view-weapon-inventory/[id]',
+            component: PageDetailComponent,
+            data: viewWeaponPage,
+          },
+          {
             path: 'distribute-weapon',
             loadChildren: () =>
               import('./distribute/distribute.module').then(
