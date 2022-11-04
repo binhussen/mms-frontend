@@ -233,6 +233,7 @@ export class TableComponent implements OnInit, AfterViewInit {
           this.displayedColumns = this.tableService.getDisplayedColumns(
             this.columns
           );
+          console.log(this.displayedColumns);
         }
         if (currentSize && data) {
           this.data.length = currentSize;
@@ -250,6 +251,11 @@ export class TableComponent implements OnInit, AfterViewInit {
         this.dataSource.paginator = this.paginator;
       })
     );
+  }
+
+  async category(value: any) {
+    // this.tableService.fetchData(0, 5, 'dataSourceUrl: string');
+    console.log(value);
   }
 
   async pageChange(value: any) {

@@ -45,7 +45,7 @@
         *ngIf="!form">
       <mat-label>አይነት</mat-label>
       <mat-select>
-        <mat-option  *ngFor="let opt of options">{{opt.value}}</mat-option>
+        <mat-option  *ngFor="let opt of options" (click)="category(opt.value)">{{opt.value}}</mat-option>
       </mat-select>
       </mat-form-field>
 
