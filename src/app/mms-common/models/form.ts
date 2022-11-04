@@ -42,6 +42,7 @@ export interface Option {
   value: string;
   label: string;
   referredValue?: string;
+  serializable?: boolean;
 }
 export interface Form {
   title: string;

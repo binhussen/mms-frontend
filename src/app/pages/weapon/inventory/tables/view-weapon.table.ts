@@ -5,6 +5,10 @@ import { environment } from 'src/environments/environment';
 const baseApiUrl = environment.baseApiUrl;
 const dataSourceUrl = `${baseApiUrl}items`;
 
+const actions: Array<Action> = [
+  { name: 'createNew.expand', type: 'expand', path: 'storeheaders' },
+];
+
 const viewWeaponTable: TableState = {
   id: 'View Weapon table',
   title: 'inventory.inventoryList',
@@ -12,12 +16,23 @@ const viewWeaponTable: TableState = {
   pageSize: 5,
   totalItems: 0,
   data: [],
-  excludedColumns: ['id'],
+  actions: actions,
+  excludedColumns: ['id', 'storeHeaderId', 'storeHeader'],
   links: {
     getPath: dataSourceUrl,
-    createPath: `${dataSourceUrl}`,
-    updatePath: `${dataSourceUrl}/[id]`,
-    deletePath: `${dataSourceUrl}/[id]`,
+  },
+};
+
+export const viewWeaponDetailTable: TableState = {
+  id: 'View Weapon Detail table',
+  title: 'inventory.inventoryList.detail',
+  pageNumber: 0,
+  pageSize: 5,
+  totalItems: 0,
+  data: [],
+  excludedColumns: ['id', 'storeHeaderId', 'storeHeader'],
+  links: {
+    getPath: dataSourceUrl,
   },
 };
 

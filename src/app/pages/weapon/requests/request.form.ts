@@ -16,9 +16,9 @@ const requestForWeaponForm: Form = {
           defaultValue: '',
           size: 4,
           options: [
-            { value: 'Weapon', label: 'Weapon' },
-            { value: 'Bullet', label: 'Bullet' },
-            { value: 'Other', label: 'Other' },
+            { value: 'Weapon', label: 'ሽጉጥ' },
+            { value: 'Bullet', label: 'ቦምብ' },
+            { value: 'Other', label: 'ተተኮሽ' },
           ],
           validations: [{ type: 'required', value: true }],
         },

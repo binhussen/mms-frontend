@@ -7,8 +7,6 @@
         routerLinkActive
         #rla="routerLinkActive"
         [active]="rla.isActive"
-        *ngIf="tab.title!='inventory.tabs.insertWeapon'||
-               tab.title==='inventory.tabs.insertWeapon'&& role==='StoreMan'"
       >
         <span>{{ tab.title | translate | uppercase }}</span>
       </a></div>
@@ -16,3 +14,6 @@
 
     <router-outlet></router-outlet>
 </ng-container>
+
+<!--*ngIf="tab.title!='inventory.tabs.insertWeapon'||-->
+<!--tab.title==='inventory.tabs.insertWeapon'&& role==='StoreMan'"-->

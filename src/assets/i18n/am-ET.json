@@ -26,7 +26,8 @@
         "createNew": "አዲስ ፍጠር",
         "noRecordFound": "ምንም መዝገብ አልተገኘም!",
         "no": "ተ.ቁ",
-        "report": "ሪፖርት"
+        "report": "ሪፖርት",
+      "search": "ፈልግ"
     },
     "menus": {
         "dashboard": "ዳሽ ቦርድ",
@@ -149,7 +150,7 @@
                 "weaponModel": "ሞዴል",
                 "weaponSerialNo": "ሴሪ",
                 "weaponQuantity": "ብዛት",
-                "weaponUnitPrice": "የአንዱ ዋጋ",
+                "weaponUnitPrice": "ዋጋ",
                 "weaponTotalPrice": "የዋጋ ድምር",
                 "storeNo": "እቃዉ የሚቀመጥበት መጋዛን ቁጥር",
                 "shelfNo": "የመደርደሪያዉ ቁጥር"
@@ -229,5 +230,33 @@
             "password": "የይላፍ ቃል",
             "profilePicture": "የተጠቃሚ መግለጫ ፎቶ"
         }
-    }
+    },
+
+    "no": "ተ.ቁ",
+  "itemNoInExpenditureRegister": "ዋጋው በገንዘብ ወጪ መዝገብ የተከፈለበት ቁጥር ",
+  "noOfEntryInTheRegisterOfIncomingGoods": " በዕቃ ገቢ መዝገብ የገባበት ንምራብ ",
+  "donor": " አስረካቢው ",
+  "itemDescription": " የእቃው ወይም የንብረት አይነት በዝርዝር ",
+  "model": " ሞዴል ",
+  "serialNo": " ሴሪ ",
+  "type": " የእቃው አይነት ",
+  "storeNo": " እቃው የሚቀመጥበት መጋዘን ቁጥር ",
+  "shelfNo": " የመደርደሪያ ቁጥር ",
+  "availableQuantity": " የሚገኝ ብዛት ",
+  "approvedQuantity": " የፀደቀ ብዛት ",
+
+  "quantity": "ብዛት",
+  "unitPrice": "የአንዱ ዋጋ",
+  "totalPrice": "ጠቅላላ ዋጋ",
+  "itemType": "የጦር መሳሪያ አይነት",
+  "availability": "የሚገኝ ብዛት",
+
+  "requestHeaderId": "",
+  "description": " የእቃው ወይም የንብረት አይነት በዝርዝር ",
+  "attachments": " አባሪ ",
+  "requestItemId": "",
+  "name": " ስም ",
+  "status": "ሁነት",
+  "requestedQuantity": " የተጠየቀ ብዛት ",
+  "distributeQuantity": " የተሰራጨ ብዛት "
 }

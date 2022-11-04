@@ -73,6 +73,10 @@ export class FormComponent implements OnInit, OnDestroy {
   errors: any = {};
   data: any = {};
 
+  quantityEl: any;
+  serialEl: any;
+  totalPriceEl: any;
+
   subscriptions: Array<Subscription> = [];
 
   @Output()
@@ -97,6 +101,43 @@ export class FormComponent implements OnInit, OnDestroy {
     this.initForm().then(() => {
       this.errorHandler.handleErrors(this.mmsForm, this.errors);
     });
+    this.serialEl = {
+      name: 'serialNo',
+      type: 'text',
+      placeholder: 'inventory.insertWeapon.form.weaponSerialNo',
+      defaultValue: '',
+      size: 3,
+      validations: [
+        { type: 'required', value: true },
+        { type: 'minLength', value: 3 },
+      ],
+    };
+    this.quantityEl = {
+      name: 'quantity',
+      type: 'number',
+      placeholder: 'inventory.insertWeapon.form.weaponQuantity',
+      defaultValue: '',
+      size: 3,
+      validations: [
+        { type: 'required', value: true },
+        { type: 'min', value: 1 },
+      ],
+    };
+    this.totalPriceEl = {
+      name: 'totalPrice',
+      type: 'number',
+      placeholder: 'inventory.insertWeapon.form.weaponTotalPrice',
+      defaultValue: '',
+      computeValueFrom: {
+        elements: ['quantity', 'unitPrice'],
+        operator: '*',
+      },
+      size: 3,
+      validations: [
+        { type: 'required', value: true },
+        { type: 'min', value: 1 },
+      ],
+    };
   }
 
   async initForm() {
@@ -142,7 +183,9 @@ export class FormComponent implements OnInit, OnDestroy {
                   );
                 }
               });
-              const formArray = this.mmsForm.get(element.name) as UntypedFormArray;
+              const formArray = this.mmsForm.get(
+                element.name
+              ) as UntypedFormArray;
               this.mmsForm.setControl(
                 element.name,
                 items ? this.fb.array(items) : formArray
@@ -175,8 +218,57 @@ export class FormComponent implements OnInit, OnDestroy {
       this.mmsForm.markAllAsTouched();
       return;
     }
-
     this.onFormSubmit.emit(this.mmsForm.value);
+  }
+
+  //category
+  category(event) {
+    const model = event.serializable ?? -1;
+
+    if (model != -1) {
+      this.mmsForm.value.storeItems.map((item) => {
+        if (event.serializable) {
+          this.form.elements[3].formArrayItems.map((x, i) => {
+            if (x.name == 'quantity') {
+              this.form.elements[3].formArrayItems.splice(i, 2);
+            }
+            if (x.name == 'serialNo') {
+              this.form.elements[3].formArrayItems.splice(i, 1);
+            }
+          });
+          this.form.elements[3].formArrayItems.splice(3, 0, this.serialEl);
+        } else {
+          this.form.elements[3].formArrayItems.map((x, i) => {
+            if (x.name == 'serialNo') {
+              this.form.elements[3].formArrayItems.splice(i, 1);
+            }
+            if (x.name == 'quantity') {
+              this.form.elements[3].formArrayItems.splice(i, 2);
+            }
+          });
+          this.form.elements[3].formArrayItems.splice(
+            5,
+            0,
+            this.quantityEl,
+            this.totalPriceEl
+          );
+        }
+      });
+    }
+
+    this.form.elements.map((x) => {
+      if (x.name == 'storeItems') {
+        x.formArrayItems.map((y) => {
+          if (y.name == 'type' && model != -1) {
+            y.defaultValue = event.value;
+          } else if (y.name == 'model') {
+            y.defaultValue = event.value;
+          }
+        });
+      }
+    });
+
+    this.mmsForm = this.getNewFormGroup(this.form.elements);
   }
 
   filterByValue(
@@ -275,7 +367,8 @@ export class FormComponent implements OnInit, OnDestroy {
     elements.forEach((element) => {
       if (element.type === 'formArray') {
         element.formArrayItems?.forEach((item) => {});
-        const items = (this.mmsForm.get(element.name) as UntypedFormArray).controls;
+        const items = (this.mmsForm.get(element.name) as UntypedFormArray)
+          .controls;
         items.forEach((control) => {
           if (control instanceof UntypedFormGroup) {
             const controls = control.controls;
@@ -328,7 +421,9 @@ export class FormComponent implements OnInit, OnDestroy {
     return this.fb.array([item]);
   }
 
-  getNewFormItem(elements: Array<FormElement>): UntypedFormGroup | UntypedFormControl {
+  getNewFormItem(
+    elements: Array<FormElement>
+  ): UntypedFormGroup | UntypedFormControl {
     if (elements.length > 1) {
       return this.getNewFormGroup(elements);
     }

@@ -27,16 +27,19 @@ export class TableService {
     }
 
     // add additional column for actions and position
-    columns = ['No', ...columns, ' '];
+    columns = ['no', ...columns, ' '];
 
     // Describe the columns for <mat-table>.
+    //
+    //
+    // header: column.replace(/([^A-Z])([A-Z])/g, '$1 $2'),
     return columns.map((column: any, index: number) => {
       return {
         columnDef: column,
-        header: column.replace(/([^A-Z])([A-Z])/g, '$1 $2'),
+        header: column,
         cell: (element: any) =>
           `${
-            column === 'No'
+            column === 'no'
               ? ''
               : element && element[column]
               ? element[column]
@@ -67,9 +70,7 @@ export class TableService {
     //
     return httpResponse.pipe(
       map((data: HttpResponse<any>) => ({
-        count: data.headers.get('X-Pagination')
-          ? JSON.parse(data.headers.get('X-Pagination')!).TotalCount
-          : 20,
+        count: JSON.parse(data.headers.get('X-Pagination'))?.TotalCount ?? 20,
         data: data.body ?? [],
         check: data.headers,
       }))

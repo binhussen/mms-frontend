@@ -26,7 +26,8 @@
         "createNew": "Create New",
         "noRecordFound": "No Record Found",
         "no": "NO",
-        "report": "Report"
+        "report": "Report",
+      "search": "Search"
     },
     "menus": {
         "dashboard": "Dashboard",
@@ -149,7 +150,7 @@
                 "weaponModel": "Weapon Model",
                 "weaponSerialNo": "Weapon Serial No",
                 "weaponQuantity": "Weapon Quantity",
-                "weaponUnitPrice": "Weapon Unit Price",
+                "weaponUnitPrice": "Weapon Price",
                 "weaponTotalPrice": "Weapon Total Price",
                 "storeNo": "Store No",
                 "shelfNo": "Shelf No"
@@ -229,5 +230,33 @@
             "password": "Password",
             "profilePicture": "profile Picture"
         }
-    }
+    },
+
+    "no": "No",
+  "itemNoInExpenditureRegister": "Item No In Expenditure Register",
+  "noOfEntryInTheRegisterOfIncomingGoods": "No Of Entry InTheRegisterOf IncomingGoods",
+  "donor": "Donor",
+  "itemDescription": "Item Description",
+  "model": "Model",
+  "serialNo": "Serial No",
+  "type": "Type",
+  "storeNo": "Store No",
+  "shelfNo": "Shelf No",
+  "availableQuantity": "Available Quantity",
+  "approvedQuantity":"Approved Quantity",
+
+  "quantity": "Quantity",
+  "unitPrice": "Unit Price",
+  "totalPrice": "Total Price",
+  "itemType": "Item Type",
+  "availability": "Availability",
+
+  "requestHeaderId": "",
+  "description": " የእቃው ወይም የንብረት አይነት በዝርዝር ",
+  "attachments": " አባሪ ",
+  "requestItemId": "",
+  "name": " ስም ",
+  "status": "ሁነት",
+  "requestedQuantity": " የተጠየቀ ብዛት ",
+  "distributeQuantity": " የተሰራጨ ብዛት "
 }

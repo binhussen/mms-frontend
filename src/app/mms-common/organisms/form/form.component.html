@@ -116,7 +116,7 @@
                 <mat-form-field [appearance]="'outline'">
                   <mat-label>{{element.placeholder | translate}}</mat-label>
                   <mat-select [formControlName]="element.name">
-                    <mat-option  *ngFor="let option of data[element.name] ? data[element.name] : filterByValue(element, nameFormArray, form) | async" [value]="option.value">
+                    <mat-option  *ngFor="let option of data[element.name] ? data[element.name] : filterByValue(element, nameFormArray, form) | async" [value]="option.value" (click)="category(option)">
                       {{option.label | translate}}
                     </mat-option>
                   </mat-select>
@@ -262,7 +262,7 @@
           <mat-form-field [appearance]="'outline'">
             <mat-label>{{element.placeholder | translate}}</mat-label>
             <mat-select [formControlName]="element.name">
-              <mat-option  *ngFor="let option of data[element.name] ? data[element.name] : filterByValue(element) | async" [value]="option.value">
+              <mat-option  *ngFor="let option of data[element.name] ? data[element.name] : filterByValue(element) | async" [value]="option.value" (click)="category(option)">
                 {{option.label | translate}}
               </mat-option>
             </mat-select>
